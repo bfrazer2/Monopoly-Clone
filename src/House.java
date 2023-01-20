@@ -19,6 +19,18 @@ public class House extends PropertySpace {
         return color;
     }
 
+    public int getNumHouses() {
+        return numHouses;
+    }
+
+    public void setNumHouses(int numHouses) {
+        this.numHouses = numHouses;
+    }
+
+    public int getHouseCost() {
+        return houseCost;
+    }
+
     private int calculateRent() {
         int rentToPay = rent[numHouses];
         return rentToPay;

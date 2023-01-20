@@ -18,5 +18,6 @@ public class Board extends Main{
     public BoardSpace getSpaceDetails(int spaceNum){
         BoardSpace mySpace = (BoardSpace)(this.spaces.get(spaceNum));
         return mySpace;
+
     }
 }

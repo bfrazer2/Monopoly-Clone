@@ -82,15 +82,31 @@ public class Main {
         player2.buyProperty(board);
         System.out.println(player2.getOwnedProps());
 
+//        //Too Poor to Buy Property Test
+//        player2.setCurrentSpace(13);
+//        player2.setPlayerMoney(0);
+//        player2.buyProperty(board);
+//        System.out.println(player2.getOwnedProps());
+
 //        //Pay Rent Test
 //        player2.payRent(100);
 //        System.out.println(player2.getPlayerMoney());
 
-        //Mortgage Property Test
-        player2.mortgageProperty(0);
+//        //Mortgage Property Test
+//        player2.mortgageProperty(0);
+//
+//        //UnMortgage Property test
+//        player2.unMortgageProperty(0);
+//
+//        //Buy House Test
+//        player2.buyHouse(0);
+//
+//        //Sell House Test
+//        player2.sellHouse(0);
 
-        //UnMortgage Property test
-        player2.unMortgageProperty(0);
+//        //Too Poor to Buy House Test
+//        player2.setPlayerMoney(0);
+//        player2.buyHouse(0);
 
     }
 
