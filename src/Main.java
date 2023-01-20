@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Main {
@@ -45,9 +46,19 @@ public class Main {
         spaces.add(new BoardSpace("Luxury Tax","Action Space"));
         spaces.add(new House("Boardwalk", "House",400,200,220,"","Dark Blue",200,0,new int[]{50,100,200,600,1400,1700,2000},false));
 
-
+        //Create Board Test
         Board myBoard = new Board(spaces);
         myBoard.viewBoard();
+
+        //Roll Dice Test
+        List<PropertySpace> player1Props = Collections.emptyList();
+        Player player1 = new Player(player1Props, 1500, 0,0,false);
+        System.out.println(player1.rollDice());
+        System.out.println(player1.rollDice());
+        System.out.println(player1.rollDice());
+        System.out.println(player1.rollDice());
+        System.out.println(player1.rollDice());
+
     }
 
     public static List<Object> spaces = new ArrayList<>();
