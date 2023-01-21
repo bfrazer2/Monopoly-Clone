@@ -103,7 +103,7 @@ public class Player {
         propToMortgage.setMortgaged();
         System.out.println(propToMortgage.isMortgaged());
         System.out.println("Player has " + this.playerMoney + " dollars before mortgage.");
-        this.playerMoney += propToMortgage.getMortgageValue();
+        this.playerMoney += ((propToMortgage.getPrice())/2);
         System.out.println("Player has " + this.playerMoney + " dollars after mortgage.");
     }
 
@@ -112,7 +112,7 @@ public class Player {
         propToMortgage.setUnMortgaged();
         System.out.println(propToMortgage.isMortgaged());
         System.out.println("Player has " + this.playerMoney + " dollars before re-buy.");
-        this.playerMoney -= propToMortgage.getUnMortgageValue();
+        this.playerMoney -= (Math.round((propToMortgage.getPrice())*.55));
         System.out.println("Player has " + this.playerMoney + " dollars after re-buy.");
     }
 
