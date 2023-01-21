@@ -1,8 +1,6 @@
 public class PropertySpace extends BoardSpace {
 
     private int price;
-    private int mortgageValue;
-    private int unMortgageValue;
     private String owner;
     private boolean mortgaged;
 
@@ -10,11 +8,9 @@ public class PropertySpace extends BoardSpace {
 
     }
 
-    public PropertySpace(String name, String type, int price, int mortgageValue, int unMortgageValue, String owner, boolean mortgaged) {
+    public PropertySpace(String name, String type, int price, String owner, boolean mortgaged) {
         super(name, type);
         this.price = price;
-        this.mortgageValue = mortgageValue;
-        this.unMortgageValue = unMortgageValue;
         this.owner = owner;
         this.mortgaged = mortgaged;
     }
@@ -41,13 +37,5 @@ public class PropertySpace extends BoardSpace {
 
     public int getPrice() {
         return price;
-    }
-
-    public int getMortgageValue() {
-        return mortgageValue;
-    }
-
-    public int getUnMortgageValue() {
-        return unMortgageValue;
     }
 }
