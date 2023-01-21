@@ -77,10 +77,10 @@ public class Main {
 //        player2.move(45);
 //        System.out.println(player2.getCurrentSpace());
 
-        //Buy Property Test
-        player2.setCurrentSpace(13);
-        player2.buyProperty(board);
-        System.out.println(player2.getOwnedProps());
+//        //Buy Property Test
+//        player2.setCurrentSpace(1);
+//        player2.buyProperty(board);
+//        System.out.println(player2.getOwnedProps());
 
 //        //Too Poor to Buy Property Test
 //        player2.setCurrentSpace(13);
@@ -99,6 +99,10 @@ public class Main {
 //        player2.unMortgageProperty(0);
 //
 //        //Buy House Test
+//        player2.setCurrentSpace(1);
+//        player2.buyProperty(board);
+//        player2.setCurrentSpace(3);
+//        player2.buyProperty(board);
 //        player2.buyHouse(0);
 //
 //        //Sell House Test
