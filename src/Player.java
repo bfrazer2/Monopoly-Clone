@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Player {
     private String name;
@@ -81,15 +82,19 @@ public class Player {
         System.out.println(type);
         if (type == "House" || type == "Rail" || type == "Utility") {
             PropertySpace prop = (PropertySpace) (propToBuy);
-            if (this.playerMoney - prop.getPrice() >= 0) {
-                System.out.println("Player has " + this.playerMoney + " dollars before property purchase.");
-                this.playerMoney -= prop.getPrice();
-                System.out.println("Player has " + this.playerMoney + " dollars after property purchase.");
-                prop.setOwner(this.name);
-                this.ownedProps.add(prop);
-                System.out.println("" + prop.getName() + " is now owned by " + prop.getOwner() + ".");
+            if (prop.getOwner()=="") {
+                if (this.playerMoney - prop.getPrice() >= 0) {
+                    System.out.println("Player has " + this.playerMoney + " dollars before property purchase.");
+                    this.playerMoney -= prop.getPrice();
+                    System.out.println("Player has " + this.playerMoney + " dollars after property purchase.");
+                    prop.setOwner(this.name);
+                    this.ownedProps.add(prop);
+                    System.out.println("" + prop.getName() + " is now owned by " + prop.getOwner() + ".");
+                } else {
+                    System.out.println("Insufficient funds to buy this property!");
+                }
             } else {
-                System.out.println("Insufficient funds to buy this property!");
+                System.out.println("Can't buy this property, it's already owned by " + prop.getOwner());
             }
         }
     }
@@ -119,19 +124,35 @@ public class Player {
     public void buyHouse(int playerProp) {
         PropertySpace propToBuildOn = (PropertySpace) (this.ownedProps.get(playerProp));
         String type = propToBuildOn.getType();
-        if(type == "House") {
+        if (type == "House") {
+
             House prop = (House) (propToBuildOn);
-            if (this.playerMoney - prop.getHouseCost() >= 0) {
-                System.out.println("Player has " + this.playerMoney + " dollars before house purchase.");
-                this.playerMoney -= prop.getHouseCost();
-                System.out.println("Player has " + this.playerMoney + " dollars after house purchase.");
-                int currentHouses = prop.getNumHouses();
-                System.out.println("Property has " + prop.getNumHouses() + " houses before purchase.");
-                int newHousesNum = currentHouses + 1;
-                prop.setNumHouses(newHousesNum);
-                System.out.println("Property has " + prop.getNumHouses() + " houses after purchase.");
+            String color = prop.getColor();
+
+            List<House> ownedHouses = new ArrayList<>();
+            for (BoardSpace property : ownedProps) {
+                if (property instanceof House) {
+                    House house = (House) property;
+                    ownedHouses.add(house);
+                }
+            }
+            Map<String, Long> colorCount = ownedHouses.stream()
+                    .collect(Collectors.groupingBy(House::getColor, Collectors.counting()));
+            if ((color == "Dark Blue" && colorCount.get("Dark Blue") == 2) || (color == "Brown" && colorCount.get("Brown") == 2) || colorCount.get(color) == 3) {
+                if (this.playerMoney - prop.getHouseCost() >= 0) {
+                    System.out.println("Player has " + this.playerMoney + " dollars before house purchase.");
+                    this.playerMoney -= prop.getHouseCost();
+                    System.out.println("Player has " + this.playerMoney + " dollars after house purchase.");
+                    int currentHouses = prop.getNumHouses();
+                    System.out.println("Property has " + prop.getNumHouses() + " houses before purchase.");
+                    int newHousesNum = currentHouses + 1;
+                    prop.setNumHouses(newHousesNum);
+                    System.out.println("Property has " + prop.getNumHouses() + " houses after purchase.");
+                } else {
+                    System.out.println("Insufficient funds to buy house for this property!");
+                }
             } else {
-                System.out.println("Insufficient funds to buy house for this property!");
+                System.out.println("Cannot buy house because player doesn't have monopoly!");
             }
         }
     }
