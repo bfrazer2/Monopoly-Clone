@@ -3,14 +3,14 @@ import java.util.stream.Collectors;
 
 public class Player {
     private String name;
-    private ArrayList<BoardSpace> ownedProps;
+    private ArrayList<main.java.BoardSpace> ownedProps;
     private int playerMoney;
     private int utilsOwned;
     private int railsOwned;
     private int currentSpace;
     private boolean inJail;
 
-    public Player(String name, ArrayList<BoardSpace> ownedProps, int playerMoney, int utilsOwned, int railsOwned, int currentSpace, boolean inJail) {
+    public Player(String name, ArrayList<main.java.BoardSpace> ownedProps, int playerMoney, int utilsOwned, int railsOwned, int currentSpace, boolean inJail) {
         this.name = name;
         this.ownedProps = ownedProps;
         this.playerMoney = playerMoney;
@@ -20,7 +20,7 @@ public class Player {
         this.inJail = inJail;
     }
 
-    public List<BoardSpace> getOwnedProps() {
+    public List<main.java.BoardSpace> getOwnedProps() {
         return ownedProps;
     }
 
@@ -32,7 +32,7 @@ public class Player {
         return currentSpace;
     }
 
-    public void setOwnedProps(ArrayList<BoardSpace> ownedProps) {
+    public void setOwnedProps(ArrayList<main.java.BoardSpace> ownedProps) {
         this.ownedProps = ownedProps;
     }
 
@@ -77,7 +77,7 @@ public class Player {
 
     public void buyProperty(Board board) {
         int mySpace = this.currentSpace;
-        BoardSpace propToBuy = (board.getSpaceDetails(mySpace));
+        main.java.BoardSpace propToBuy = (board.getSpaceDetails(mySpace));
         String type = propToBuy.getType();
         if (type == "House" || type == "Rail" || type == "Utility") {
             PropertySpace prop = (PropertySpace) (propToBuy);
@@ -169,7 +169,7 @@ public class Player {
 
     public int countUtilities() {
         int utilCount = 0;
-        for (BoardSpace property : ownedProps) {
+        for (main.java.BoardSpace property : ownedProps) {
             if (property instanceof Utility) {
                 utilCount ++;
             }
@@ -179,7 +179,7 @@ public class Player {
 
     public int countRails() {
         int railCount = 0;
-        for (BoardSpace property : ownedProps) {
+        for (main.java.BoardSpace property : ownedProps) {
             if (property instanceof Rail) {
                 railCount ++;
             }
@@ -189,7 +189,7 @@ public class Player {
 
     public boolean hasMonopoly(String color) {
         List<House> ownedHouses = new ArrayList<>();
-        for (BoardSpace property : ownedProps) {
+        for (main.java.BoardSpace property : ownedProps) {
             if (property instanceof House) {
                 House house = (House) property;
                 ownedHouses.add(house);

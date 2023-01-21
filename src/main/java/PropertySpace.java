@@ -1,4 +1,4 @@
-public class PropertySpace extends BoardSpace {
+public class PropertySpace extends main.java.BoardSpace {
 
     private int price;
     private String owner;

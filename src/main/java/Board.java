@@ -10,13 +10,13 @@ public class Board extends Main{
         int i = 0;
         for (Object space : spaces) {
             i++;
-            BoardSpace mySpace = (BoardSpace)(space);
+            main.java.BoardSpace mySpace = (main.java.BoardSpace)(space);
             System.out.println("" + i + ": " + mySpace.getName());
         }
     }
 
-    public BoardSpace getSpaceDetails(int spaceNum){
-        BoardSpace mySpace = (BoardSpace)(this.spaces.get(spaceNum));
+    public main.java.BoardSpace getSpaceDetails(int spaceNum){
+        main.java.BoardSpace mySpace = (main.java.BoardSpace)(this.spaces.get(spaceNum));
         return mySpace;
 
     }
