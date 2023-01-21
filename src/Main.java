@@ -112,6 +112,23 @@ public class Main {
 //        player2.setPlayerMoney(0);
 //        player2.buyHouse(0);
 
+//        //Count Utils Test
+//        player2.setCurrentSpace(12);
+//        player2.buyProperty(board);
+//        System.out.println(player2.countUtilities());
+//        player2.setCurrentSpace(28);
+//        player2.buyProperty(board);
+//        System.out.println(player2.countUtilities());
+//
+//        //Count Rails Test
+//        player2.setCurrentSpace(5);
+//        player2.buyProperty(board);
+//        System.out.println(player2.countRails());
+//        player2.setCurrentSpace(25);
+//        player2.buyProperty(board);
+//        System.out.println(player2.countRails());
+
+
     }
 
     public static List<Object> spaces = new ArrayList<>();

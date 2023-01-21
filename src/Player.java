@@ -79,7 +79,6 @@ public class Player {
         int mySpace = this.currentSpace;
         BoardSpace propToBuy = (board.getSpaceDetails(mySpace));
         String type = propToBuy.getType();
-        System.out.println(type);
         if (type == "House" || type == "Rail" || type == "Utility") {
             PropertySpace prop = (PropertySpace) (propToBuy);
             if (prop.getOwner()=="") {
@@ -169,23 +168,23 @@ public class Player {
     }
 
     public int countUtilities() {
-        int res = 0;
+        int utilCount = 0;
         for (BoardSpace property : ownedProps) {
             if (property instanceof Utility) {
-                res ++;
+                utilCount ++;
             }
         }
-        return res;
+        return utilCount;
     }
 
     public int countRails() {
-        int res = 0;
+        int railCount = 0;
         for (BoardSpace property : ownedProps) {
             if (property instanceof Rail) {
-                res ++;
+                railCount ++;
             }
         }
-        return res;
+        return railCount;
     }
 
     public boolean hasMonopoly(String color) {
