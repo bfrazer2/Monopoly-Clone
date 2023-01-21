@@ -104,7 +104,7 @@ public class Main {
 //        player2.setCurrentSpace(3);
 //        player2.buyProperty(board);
 //        player2.buyHouse(0);
-//
+////
 //        //Sell House Test
 //        player2.sellHouse(0);
 

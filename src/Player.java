@@ -129,16 +129,7 @@ public class Player {
             House prop = (House) (propToBuildOn);
             String color = prop.getColor();
 
-            List<House> ownedHouses = new ArrayList<>();
-            for (BoardSpace property : ownedProps) {
-                if (property instanceof House) {
-                    House house = (House) property;
-                    ownedHouses.add(house);
-                }
-            }
-            Map<String, Long> colorCount = ownedHouses.stream()
-                    .collect(Collectors.groupingBy(House::getColor, Collectors.counting()));
-            if ((color == "Dark Blue" && colorCount.get("Dark Blue") == 2) || (color == "Brown" && colorCount.get("Brown") == 2) || colorCount.get(color) == 3) {
+            if (this.hasMonopoly(color)) {
                 if (this.playerMoney - prop.getHouseCost() >= 0) {
                     System.out.println("Player has " + this.playerMoney + " dollars before house purchase.");
                     this.playerMoney -= prop.getHouseCost();
@@ -175,6 +166,41 @@ public class Player {
                 System.out.println("No houses to sell on this property!");
             }
         }
+    }
+
+    public int countUtilities() {
+        int res = 0;
+        for (BoardSpace property : ownedProps) {
+            if (property instanceof Utility) {
+                res ++;
+            }
+        }
+        return res;
+    }
+
+    public int countRails() {
+        int res = 0;
+        for (BoardSpace property : ownedProps) {
+            if (property instanceof Rail) {
+                res ++;
+            }
+        }
+        return res;
+    }
+
+    public boolean hasMonopoly(String color) {
+        List<House> ownedHouses = new ArrayList<>();
+        for (BoardSpace property : ownedProps) {
+            if (property instanceof House) {
+                House house = (House) property;
+                ownedHouses.add(house);
+            }
+        }
+        Map<String, Long> colorCount = ownedHouses.stream()
+                .collect(Collectors.groupingBy(House::getColor, Collectors.counting()));
+        if ((color == "Dark Blue" && colorCount.get("Dark Blue") == 2) || (color == "Brown" && colorCount.get("Brown") == 2) || colorCount.get(color) == 3) {
+            return true;
+        } else return false;
     }
 
 
