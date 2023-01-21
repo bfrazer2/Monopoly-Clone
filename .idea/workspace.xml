@@ -4,8 +4,17 @@
     <list default="true" id="4aaf33c7-9a39-4ce2-9990-b25ce85d54ae" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/src/House.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/src/BoardSpace.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/House.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/House.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PropertySpace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PropertySpace.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Rail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Rail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utility.java" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +80,11 @@
       <option name="presentableId" value="Default" />
       <updated>1674052825067</updated>
       <workItem from="1674052827597" duration="136000" />
+<<<<<<< Updated upstream
       <workItem from="1674055957573" duration="17587000" />
+=======
+      <workItem from="1674055957573" duration="34976000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
