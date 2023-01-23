@@ -104,22 +104,46 @@ public class Player {
         }
     }
 
-    public void payRent(main.java.BoardSpace landedSpace, int diceRoll) {
+    public boolean payRent(main.java.BoardSpace landedSpace, int diceRoll) {
         String type = landedSpace.getType();
+        Boolean broke = false;
         if (type == "House") {
             House house = (House)(landedSpace);
             int houseRent = house.calculateRent();
-            this.playerMoney -= houseRent;
+            if (this.playerMoney < houseRent) {
+                broke = true;
+            } else {
+                this.playerMoney -= houseRent;
+                System.out.println("You owe them $" + houseRent);
+                System.out.println("You now have $" + this.playerMoney + " after payment.");
+            }
         } else if (type == "Rail") {
             Rail rail = (Rail)(landedSpace);
             Player owner = Main.players.stream().filter(player -> player.getName().equals(rail.getOwner())).findFirst().orElse(null);
             int railRent = rail.calculateRent(owner);
-            this.playerMoney -= railRent;
+            if (this.playerMoney < railRent) {
+                broke = true;
+            } else {
+                this.playerMoney -= railRent;
+                System.out.println("You owe them $" + railRent);
+                System.out.println("You now have $" + this.playerMoney + " after payment.");
+            }
         } else {
             Utility utility = (Utility) (landedSpace);
             Player owner = Main.players.stream().filter(player -> player.getName().equals(utility.getOwner())).findFirst().orElse(null);
-            int railRent = utility.calculateRent(owner, diceRoll);
-            this.playerMoney -= railRent;
+            int utilityRent = utility.calculateRent(owner, diceRoll);
+            if(this.playerMoney < utilityRent) {
+                broke = true;
+            } else {
+                this.playerMoney -= utilityRent;
+                System.out.println("You owe them $" + utilityRent);
+                System.out.println("You now have $" + this.playerMoney + " after payment.");
+            }
+        }
+        if (broke) {
+            return true;
+        } else {
+            return false;
         }
     }
 

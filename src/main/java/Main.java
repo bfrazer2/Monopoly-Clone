@@ -123,7 +123,7 @@ public class Main {
             //Check Space Type
             String type = landedSpace.getType();
 
-            //Action Sequence
+            //Action if lands on property
             if (type == "House" || type == "Rail" || type == "Utility") {
 
                 PropertySpace prop = (PropertySpace) landedSpace;
@@ -156,13 +156,17 @@ public class Main {
                     } catch (IllegalArgumentException e) {
                         System.out.println(e.getMessage());
                     }
+                } else {
+                    System.out.println("Bad luck! You've landed on a property owned by " + prop.getOwner());
+                    boolean broke = activePlayer.payRent(landedSpace,totalRoll);
+                    if (broke) {
+                        System.out.println("You don't have enough money to cover your rent!");
+                        System.out.println("You must mortgage properties or sell houses to cover your rent.");
+                    }
                 }
+            } else {
+                System.out.println("This is an " + type + ". Functionality will be added here in future commits.");
             }
-
-
-
-
-
         }
     }
 }
