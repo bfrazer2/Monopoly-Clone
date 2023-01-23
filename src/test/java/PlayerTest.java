@@ -196,4 +196,15 @@ class PlayerTest extends Main {
         player2.buyProperty(testBoard);
         assertEquals(2, player2.countRails());
     }
+
+    @Test
+    void meetsBuildCondition() {
+        player2.setCurrentSpace(1);
+        player2.buyProperty(testBoard);
+        player2.setCurrentSpace(3);
+        player2.buyProperty(testBoard);
+        List<House> validHousePurchases = player2.meetsBuildCondition("Brown");
+        
+        assertEquals(2, validHousePurchases.size());
+    }
 }

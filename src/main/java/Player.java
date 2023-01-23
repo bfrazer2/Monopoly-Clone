@@ -202,6 +202,36 @@ public class Player {
         } else return false;
     }
 
+    public List<House> meetsBuildCondition(String color) {
+        List<House> ownedHouses = new ArrayList<>();
+        List<House> validBuildHouses = new ArrayList<>();
 
+        for (main.java.BoardSpace property : ownedProps) {
+            if (property instanceof House) {
+                House house = (House) property;
+                ownedHouses.add(house);
+            }
+        }
 
+        // filter the list of houses to include only those with the specified color
+        List<House> filteredHouses = ownedHouses.stream()
+                .filter(h -> h.getColor().equals(color))
+                .collect(Collectors.toList());
+
+        // extract the numHouses values from the filtered list of houses
+        List<Integer> filteredNumHouses = filteredHouses.stream()
+                .map(House::getNumHouses)
+                .collect(Collectors.toList());
+
+        int count = -1;
+        for (int i : filteredNumHouses) {
+            count ++;
+            for (int x : filteredNumHouses) {
+                if (i+1-x <= 1 && !validBuildHouses.contains(filteredHouses.get(count))) {
+                    validBuildHouses.add(filteredHouses.get(count));
+                }
+            }
+        }
+        return validBuildHouses;
+    }
 }
