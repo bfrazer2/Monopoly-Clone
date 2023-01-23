@@ -3,9 +3,14 @@ public class Utility extends PropertySpace {
         super(name, type, price, owner, mortgaged);
     }
 
-    private int calculateRent(Player player, int diceRoll) {
+    public int calculateRent(Player player, int diceRoll) {
         int numUtilities = player.countUtilities();
-        int rent = numUtilities*diceRoll;
+        int rent;
+        if (numUtilities == 1) {
+            rent = 4 * diceRoll;
+        } else {
+            rent = 10 * diceRoll;
+        }
         return rent;
     }
 }

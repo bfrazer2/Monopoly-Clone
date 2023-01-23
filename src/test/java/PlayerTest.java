@@ -30,15 +30,15 @@ class PlayerTest extends Main {
     void setUp(){
 
         myList.add(new main.java.BoardSpace("Go", "Action Space"));
-        myList.add(new House("Mediterranean Avenue","House",60,"",false,"Brown",50,0, new int[]{2,4,10,30,90,160,250}, false));
+        myList.add(new House("Mediterranean Avenue","House",60,"",false,"Brown",50,0, new int[]{2,10,30,90,160,250}, false));
         myList.add(new main.java.BoardSpace("Community Chest", "Action Space"));
-        myList.add(new House("Baltic Avenue","House",60,"",false,"Brown",50,0, new int[]{4,8,20,60,180, 320, 450}, false));
+        myList.add(new House("Baltic Avenue","House",60,"",false,"Brown",50,0, new int[]{4,20,60,180, 320, 450}, false));
         myList.add(new main.java.BoardSpace("IncomeTax", "Action Space"));
         myList.add(new Rail("Reading Railroad", "Rail",200,"", false));
-        myList.add(new House("Oriental Avenue", "House",100,"",false, "Light Blue",50,0,new int[]{6,12,30,90,270,400,550}, false));
+        myList.add(new House("Oriental Avenue", "House",100,"",false, "Light Blue",50,0,new int[]{6,30,90,270,400,550}, false));
         myList.add(new main.java.BoardSpace("Chance","Action Space"));
-        myList.add(new House("Vermont Avenue", "House",100,"",false,"Light Blue",50,0,new int[]{6,12,30,90,270,400,550}, false));
-        myList.add(new House("Connecticut Avenue", "House",120,"",false,"Light Blue",50,0,new int[]{8,16,40,100,300,450,600}, false));
+        myList.add(new House("Vermont Avenue", "House",100,"",false,"Light Blue",50,0,new int[]{6,30,90,270,400,550}, false));
+        myList.add(new House("Connecticut Avenue", "House",120,"",false,"Light Blue",50,0,new int[]{8,40,100,300,450,600}, false));
         myList.add(new main.java.BoardSpace("Jail","Action Space"));
         myList.add(new Utility("Electric Company", "Utility",150,"", false));
         myList.add(new main.java.BoardSpace("Free Parking","Action Space"));
@@ -49,6 +49,7 @@ class PlayerTest extends Main {
         testBoard = new Board(myList);
 
         player2 = new Player("player2",player2Props, 1500, 0,0,0,false);
+        players.add(player2);
 
         space = testBoard.getSpaceDetails(1);
         propSpace = (PropertySpace) (space);
@@ -59,6 +60,7 @@ class PlayerTest extends Main {
         System.setOut(printStream);
 
     }
+
     @Test
     void rollDice() {
         int roll1 = player2.rollDice();
@@ -199,12 +201,64 @@ class PlayerTest extends Main {
 
     @Test
     void meetsBuildCondition() {
+        //Works if build condition met for all owned
         player2.setCurrentSpace(1);
         player2.buyProperty(testBoard);
         player2.setCurrentSpace(3);
         player2.buyProperty(testBoard);
         List<House> validHousePurchases = player2.meetsBuildCondition("Brown");
-        
         assertEquals(2, validHousePurchases.size());
+
+        //Works if build condition not met for some owned
+        player2.buyHouse(0);
+        validHousePurchases = player2.meetsBuildCondition("Brown");
+        assertEquals(1, validHousePurchases.size());
+    }
+
+    @Test
+    void payRent() {
+        //Works for House
+        //2,10,30,90,160,250
+        player2.setCurrentSpace(1);
+        player2.buyProperty(testBoard);
+        player1 = new Player("player1", player1Props, 1500, 0, 0, 1, false);
+        players.add(player1);
+        player1.payRent(space,3);
+        assertEquals(1498, player1.getPlayerMoney());
+
+        //Works for House with houses
+        player2.setCurrentSpace(3);
+        player2.buyProperty(testBoard);
+        player2.buyHouse(0);
+        player1.payRent(space,3);
+        assertEquals(1488, player1.getPlayerMoney());
+        player2.buyHouse(1);
+        player2.buyHouse(0);
+        player1.payRent(space,3);
+        assertEquals(1458, player1.getPlayerMoney());
+
+        //Works for Rail
+        player2.setCurrentSpace(5);
+        player2.buyProperty(testBoard);
+        space = testBoard.getSpaceDetails(5);
+        player1.payRent(space, 3);
+        assertEquals(1433,player1.getPlayerMoney());
+        player2.setCurrentSpace(14);
+        player2.buyProperty(testBoard);
+        player1.payRent(space,3);
+        assertEquals(1383,player1.getPlayerMoney());
+
+        //Works for Utility
+        player2.setCurrentSpace(11);
+        player2.buyProperty(testBoard);
+        space = testBoard.getSpaceDetails(11);
+        player1.payRent(space,5);
+        assertEquals(1363,player1.getPlayerMoney());
+
+        player2.setCurrentSpace(15);
+        player2.buyProperty(testBoard);
+        space = testBoard.getSpaceDetails(15);
+        player1.payRent(space,5);
+        assertEquals(1313,player1.getPlayerMoney());
     }
 }

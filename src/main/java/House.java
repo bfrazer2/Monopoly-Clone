@@ -31,9 +31,9 @@ public class House extends PropertySpace {
         return houseCost;
     }
 
-    private int calculateRent() {
-        int rentToPay = rent[numHouses];
-        return rentToPay;
+    public int calculateRent() {
+            int rentToPay = rent[this.numHouses];
+            return rentToPay;
     }
 
 

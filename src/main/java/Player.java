@@ -20,6 +20,10 @@ public class Player {
         this.inJail = inJail;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public List<main.java.BoardSpace> getOwnedProps() {
         return ownedProps;
     }
@@ -98,8 +102,23 @@ public class Player {
         }
     }
 
-    public void payRent(int rent) {
-        this.playerMoney -= rent;
+    public void payRent(main.java.BoardSpace landedSpace, int diceRoll) {
+        String type = landedSpace.getType();
+        if (type == "House") {
+            House house = (House)(landedSpace);
+            int houseRent = house.calculateRent();
+            this.playerMoney -= houseRent;
+        } else if (type == "Rail") {
+            Rail rail = (Rail)(landedSpace);
+            Player owner = Main.players.stream().filter(player -> player.getName().equals(rail.getOwner())).findFirst().orElse(null);
+            int railRent = rail.calculateRent(owner);
+            this.playerMoney -= railRent;
+        } else {
+            Utility utility = (Utility) (landedSpace);
+            Player owner = Main.players.stream().filter(player -> player.getName().equals(utility.getOwner())).findFirst().orElse(null);
+            int railRent = utility.calculateRent(owner, diceRoll);
+            this.playerMoney -= railRent;
+        }
     }
 
     public void mortgageProperty(int playerProp) {
@@ -226,9 +245,14 @@ public class Player {
         int count = -1;
         for (int i : filteredNumHouses) {
             count ++;
+            int selfCount = 0;
             for (int x : filteredNumHouses) {
-                if (i+1-x <= 1 && !validBuildHouses.contains(filteredHouses.get(count))) {
-                    validBuildHouses.add(filteredHouses.get(count));
+                if (i == x && selfCount==0) {
+                    selfCount +=1;
+                } else {
+                    if (i + 1 - x <= 1 && !validBuildHouses.contains(filteredHouses.get(count))) {
+                        validBuildHouses.add(filteredHouses.get(count));
+                    }
                 }
             }
         }
