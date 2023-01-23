@@ -93,7 +93,7 @@ public class Player {
                     System.out.println("Insufficient funds to buy this property!");
                 }
             } else {
-                System.out.println("Can't buy this property, it's already owned by " + prop.getOwner());
+                System.out.println("Can't buy this property, it's already owned by " + prop.getOwner() + "!");
             }
         }
     }

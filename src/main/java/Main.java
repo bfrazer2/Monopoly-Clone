@@ -3,8 +3,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class Main {
-
     public static List<Object> spaces = new ArrayList<>();
+
     public static void main(String[] args) {
 
         spaces.add(new main.java.BoardSpace("Go", "Action Space"));
@@ -65,55 +65,20 @@ public class Main {
         //Move Test
         ArrayList<main.java.BoardSpace> player2Props = new ArrayList<>();
         Player player2 = new Player("player2",player2Props, 1500, 0,0,0,false);
-//        System.out.println("Player 2 Started their turn on: " + player2.getCurrentSpace());
-//        int roll = player2.rollDice();
-//        System.out.println("Player 2 Rolled: " + roll);
-//        player2.move(roll);
-//        System.out.println("Player 2 Ended their turn on: " + player2.getCurrentSpace());
-//        roll = player2.rollDice();
-//        System.out.println("Player 2 Rolled: " + roll);
-//        player2.move(roll);
-//        System.out.println("Player 2 Ended their turn on: " + player2.getCurrentSpace());
 
-//        //Complete Circuit Test
-//        player2.setCurrentSpace(0);
-//        player2.move(45);
-//        System.out.println(player2.getCurrentSpace());
 
-//        //Buy Property Test
-//        player2.setCurrentSpace(1);
-//        player2.buyProperty(board);
-//        System.out.println(player2.getOwnedProps());
 
-//        //Too Poor to Buy Property Test
-//        player2.setCurrentSpace(13);
-//        player2.setPlayerMoney(0);
-//        player2.buyProperty(board);
-//        System.out.println(player2.getOwnedProps());
 
 //        //Pay Rent Test
 //        player2.payRent(100);
 //        System.out.println(player2.getPlayerMoney());
 
-//        //Mortgage Property Test
-//        player2.mortgageProperty(0);
-//
-//        //UnMortgage Property test
-//        player2.unMortgageProperty(0);
-//
-//        //Buy House Test
-//        player2.setCurrentSpace(1);
-//        player2.buyProperty(board);
-//        player2.setCurrentSpace(3);
-//        player2.buyProperty(board);
-//        player2.buyHouse(0);
+
 ////
 //        //Sell House Test
 //        player2.sellHouse(0);
 
-//        //Too Poor to Buy House Test
-//        player2.setPlayerMoney(0);
-//        player2.buyHouse(0);
+
 
 //        //Count Utils Test
 //        player2.setCurrentSpace(12);

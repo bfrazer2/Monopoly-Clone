@@ -5,18 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4aaf33c7-9a39-4ce2-9990-b25ce85d54ae" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Monopoly.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Monopoly.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BoardSpace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BoardSpace.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/House.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/House.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PropertySpace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PropertySpace.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Rail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,24 +34,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "true",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "Main",
-    "last_directory_selection": "/Users/benjamin.frazer/Documents/IntelliJ/Monopoly/src/main/java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;Main&quot;,
+    &quot;last_directory_selection&quot;: &quot;/Users/benjamin.frazer/Documents/IntelliJ/Monopoly/src/main/java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="Main" />
@@ -75,23 +64,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.BoardTest">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="Monopoly" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Monopoly" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="BoardTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.BoardTest.viewBoard">
     <configuration name="BoardTest.getSpaceDetails" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Monopoly" />
       <option name="PACKAGE_NAME" value="" />
@@ -102,21 +75,41 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BoardTest.setUp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BoardTest.viewBoard" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Monopoly" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="BoardTest" />
-      <option name="METHOD_NAME" value="setUp" />
+      <option name="METHOD_NAME" value="viewBoard" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BoardTest.testGetSpaceDetails" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PlayerTest.buyProperty" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Monopoly" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="BoardTest" />
-      <option name="METHOD_NAME" value="testGetSpaceDetails" />
+      <option name="MAIN_CLASS_NAME" value="PlayerTest" />
+      <option name="METHOD_NAME" value="buyProperty" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlayerTest.countRails" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Monopoly" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PlayerTest" />
+      <option name="METHOD_NAME" value="countRails" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlayerTest.countUtilities" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Monopoly" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PlayerTest" />
+      <option name="METHOD_NAME" value="countUtilities" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -124,11 +117,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.BoardTest" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.BoardTest.setUp" />
+        <item itemvalue="JUnit.BoardTest.viewBoard" />
         <item itemvalue="JUnit.BoardTest.getSpaceDetails" />
-        <item itemvalue="JUnit.BoardTest.testGetSpaceDetails" />
+        <item itemvalue="JUnit.PlayerTest.buyProperty" />
+        <item itemvalue="JUnit.PlayerTest.countRails" />
+        <item itemvalue="JUnit.PlayerTest.countUtilities" />
       </list>
     </recent_temporary>
   </component>
@@ -141,7 +134,8 @@
       <option name="presentableId" value="Default" />
       <updated>1674052825067</updated>
       <workItem from="1674052827597" duration="136000" />
-      <workItem from="1674055957573" duration="45506000" />
+      <workItem from="1674055957573" duration="49620000" />
+      <workItem from="1674489165862" duration="6481000" />
     </task>
     <servers />
   </component>
