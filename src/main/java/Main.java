@@ -1,12 +1,15 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import jdk.jshell.execution.Util;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
 
 public class Main {
     public static List<Object> spaces = new ArrayList<>();
     public static List<Player> players = new ArrayList<>();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         spaces.add(new main.java.BoardSpace("Go", "Action Space"));
         spaces.add(new House("Mediterranean Avenue","House",60,"",false,"Brown",50,0, new int[]{2,10,30,90,160,250}, false));
@@ -49,24 +52,117 @@ public class Main {
         spaces.add(new main.java.BoardSpace("Luxury Tax","Action Space"));
         spaces.add(new House("Boardwalk", "House",400,"",false,"Dark Blue",200,0,new int[]{50,200,600,1400,1700,2000},false));
 
-        //Create Board Test
+        //Create GameBoard
         Board board = new Board(spaces);
-        board.viewBoard();
 
-        //Move Test
-        ArrayList<main.java.BoardSpace> player2Props = new ArrayList<>();
-        Player player2 = new Player("player2",player2Props, 1500, 0,0,0,false);
-        players.add(player2);
+        //Set Game-flow Conditions
+        Boolean gameOver = false;
+        Boolean selectingPlayerNum = true;
+        int turnCounter = 0;
+        int selectedPlayerNum = 0;
+        Scanner scanner = new Scanner(System.in);
+
+        while(!gameOver) {
+
+            //Accept user input for number of players
+
+            while (selectingPlayerNum) {
+
+                try {
+
+                    //Get Input
+                    System.out.print("Enter the number of players, between 2 and 4.");
+                    selectedPlayerNum = scanner.nextInt();
+                    if (selectedPlayerNum < 2 || selectedPlayerNum > 4) {
+                        throw new IllegalArgumentException("Invalid input, number must be between 2 and 4");
+                    }
+                    System.out.println("You entered: " + selectedPlayerNum);
+
+                    //Generate Players
+                    for (int i = 1; i <= selectedPlayerNum; i++) {
+                        players.add(new Player("Player " + i));
+                        System.out.println(players.get(i-1).getName() + " created!");
+                    }
+                    //Exit Loop
+                    selectingPlayerNum = false;
+
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input, not a number");
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+
+            //Increment Turn
+            turnCounter++;
+            if (turnCounter>selectedPlayerNum) {
+                turnCounter-=selectedPlayerNum;
+            }
+
+            //Define Active Player
+            Player activePlayer = players.get(turnCounter-1);
+            String name = activePlayer.getName();
+            System.out.println(name + "'s turn!");
+
+            //Roll Dice
+            Boolean doubles = false;
+            int roll1 = activePlayer.rollDice();
+            int roll2 = activePlayer.rollDice();
+            if (roll1 == roll2) {
+                doubles = true;
+            }
+            int totalRoll = roll1+roll2;
+            System.out.println(name + " rolled a " + totalRoll + "!");
+
+            //Move
+            activePlayer.move(totalRoll);
+            main.java.BoardSpace landedSpace = board.getSpaceDetails(activePlayer.getCurrentSpace());
+            System.out.println(name + " landed on " + landedSpace.getName() + ".");
+
+
+            //Check Space Type
+            String type = landedSpace.getType();
+
+            //Action Sequence
+            if (type == "House" || type == "Rail" || type == "Utility") {
+
+                PropertySpace prop = (PropertySpace) landedSpace;
+                if(prop.getOwner() == "") {
+                    //Buy Prop Choice
+                    System.out.println("Would you like to purchase this property? \n 1: Yes \n 2: No");
+                    if(type == "House") {
+                        House houseProp = (House) prop;
+                        System.out.println(houseProp.toString());
+                    } else if (type == "Rail") {
+                        Rail railProp = (Rail) prop;
+                        System.out.println(railProp.toString());
+                    } else {
+                        Utility utilityProp = (Utility) prop;
+                        System.out.println(utilityProp.toString());
+                    }
+                    try {
+                        int purchaseChoice = scanner.nextInt();
+                        if (purchaseChoice < 1 || purchaseChoice > 2) {
+                            throw new IllegalArgumentException("Invalid input, please choose either 1 or 2.");
+                        }
+                        if (purchaseChoice == 1) {
+                            activePlayer.buyProperty(board);
+                        } else {
+                            System.out.println("You've chosen not to purchase this property.");
+                        }
+                        gameOver = true;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input, not a number");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
+            }
 
 
 
 
-//        //Pay Rent Test
-//        player2.payRent(100);
-//        System.out.println(player2.getPlayerMoney());
-    }
 
-    public static List<Object> getSpaces() {
-        return spaces;
+        }
     }
 }

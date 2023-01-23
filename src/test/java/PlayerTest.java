@@ -64,7 +64,7 @@ class PlayerTest extends Main {
     @Test
     void rollDice() {
         int roll1 = player2.rollDice();
-        assertTrue(roll1<=12 && roll1>=2);
+        assertTrue(roll1<=6 && roll1>=1);
         int roll2 = player2.rollDice();
         assertNotEquals(roll1, roll2);
     }

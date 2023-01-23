@@ -71,13 +71,10 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PlayerTest.payRent">
-    <configuration name="BoardTest.getSpaceDetails" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Monopoly" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="BoardTest" />
-      <option name="METHOD_NAME" value="getSpaceDetails" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -87,16 +84,6 @@
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="BoardTest" />
       <option name="METHOD_NAME" value="viewBoard" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PlayerTest.buyProperty" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Monopoly" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="PlayerTest" />
-      <option name="METHOD_NAME" value="buyProperty" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -122,13 +109,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PlayerTest.rollDice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Monopoly" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PlayerTest" />
+      <option name="METHOD_NAME" value="rollDice" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.PlayerTest.rollDice" />
         <item itemvalue="JUnit.PlayerTest.payRent" />
         <item itemvalue="JUnit.PlayerTest.meetsBuildCondition" />
         <item itemvalue="JUnit.BoardTest.viewBoard" />
-        <item itemvalue="JUnit.BoardTest.getSpaceDetails" />
-        <item itemvalue="JUnit.PlayerTest.buyProperty" />
       </list>
     </recent_temporary>
   </component>
@@ -143,7 +140,7 @@
       <workItem from="1674052827597" duration="136000" />
       <workItem from="1674055957573" duration="49620000" />
       <workItem from="1674489165862" duration="6481000" />
-      <workItem from="1674497283306" duration="8655000" />
+      <workItem from="1674497283306" duration="14871000" />
     </task>
     <servers />
   </component>

@@ -10,6 +10,10 @@ public class Player {
     private int currentSpace;
     private boolean inJail;
 
+    public Player(String name) {
+        this(name, new ArrayList<>(), 1500, 0, 0, 0, false);
+    }
+
     public Player(String name, ArrayList<main.java.BoardSpace> ownedProps, int playerMoney, int utilsOwned, int railsOwned, int currentSpace, boolean inJail) {
         this.name = name;
         this.ownedProps = ownedProps;
@@ -63,9 +67,7 @@ public class Player {
     public int rollDice() {
         int min = 1;
         int max = 6;
-        int roll1 = (int)(Math.random() * (max - min + 1)) + min;
-        int roll2 = (int)(Math.random() * (max - min + 1)) + min;
-        int roll = roll1+roll2;
+        int roll = (int)(Math.random() * (max - min + 1)) + min;
         return roll;
     }
 
@@ -87,9 +89,9 @@ public class Player {
             PropertySpace prop = (PropertySpace) (propToBuy);
             if (prop.getOwner()=="") {
                 if (this.playerMoney - prop.getPrice() >= 0) {
-                    System.out.println("Player has " + this.playerMoney + " dollars before property purchase.");
+                    System.out.println(this.name + " has " + this.playerMoney + " dollars before property purchase.");
                     this.playerMoney -= prop.getPrice();
-                    System.out.println("Player has " + this.playerMoney + " dollars after property purchase.");
+                    System.out.println(this.name + " has " + this.playerMoney + " dollars after property purchase.");
                     prop.setOwner(this.name);
                     this.ownedProps.add(prop);
                     System.out.println("" + prop.getName() + " is now owned by " + prop.getOwner() + ".");
