@@ -24,7 +24,7 @@ public class OptionHandler {
                 if (optionInt < 1 || optionInt > options.size()) {
                     throw new IllegalArgumentException("Invalid input, number must be between 1 and " + options.size());
                 }
-                System.out.println("You selected: " + options.get(optionInt));
+                System.out.println("You selected: " + options.get(optionInt-1));
                 notResolved = false;
 
             } catch (InputMismatchException e) {

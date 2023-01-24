@@ -52,6 +52,7 @@ public class Main {
         Board board = new Board(spaces);
 
         //Set Game-flow Conditions
+        Player activePlayer;
         Boolean gameOver = false;
         Boolean selectingPlayerNum = true;
         int turnCounter = 0;
@@ -74,7 +75,7 @@ public class Main {
                 options.clear();
 
                 //Generate Players
-                for (int i = 1; i <= playerNum; i++) {
+                for (int i = 1; i <= playerNum+1; i++) {
                     players.add(new Player("Player " + i));
                     System.out.println(players.get(i-1).getName() + " created!");
                 }
@@ -84,14 +85,14 @@ public class Main {
 
             //Increment Turn
             turnCounter++;
-            if (turnCounter>playerNum) {
-                turnCounter-=playerNum;
+            if (turnCounter>playerNum+1) {
+                turnCounter-=playerNum+1;
             }
 
             //Define Active Player
-            Player activePlayer = players.get(turnCounter-1);
+            activePlayer = players.get(turnCounter-1);
             String name = activePlayer.getName();
-            System.out.println(name + "'s turn!");
+            System.out.println("\n" + name + "'s turn!");
 
             //Roll Dice
             Boolean doubles = false;
@@ -101,12 +102,12 @@ public class Main {
                 doubles = true;
             }
             int totalRoll = roll1+roll2;
-            System.out.println(name + " rolled a " + totalRoll + "!");
+            System.out.println("\n" + name + " rolled a " + totalRoll + "!");
 
             //Move
             activePlayer.move(totalRoll);
             main.java.BoardSpace landedSpace = board.getSpaceDetails(activePlayer.getCurrentSpace());
-            System.out.println(name + " landed on " + landedSpace.getName() + ".");
+            System.out.println("\n" + name + " landed on " + landedSpace.getName() + ".\n");
 
 
             //Check Space Type
@@ -129,7 +130,7 @@ public class Main {
                         System.out.println(utilityProp.toString());
                     }
 
-                    OptionHandler playerNumQuery = new OptionHandler("Would you like to purchase this property?", options);
+                    OptionHandler playerNumQuery = new OptionHandler("\nWould you like to purchase this property?", options);
                     options.add("1. Yes");
                     options.add("2. No");
                     int yesOrNo = playerNumQuery.handleOptions();
