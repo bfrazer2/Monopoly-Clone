@@ -272,7 +272,6 @@ public class Player {
         }
 
         Boolean stillBroke = true;
-        Boolean mortgagingProperties = false;
 
         System.out.println("You don't have enough money to cover your dues!");
         System.out.println("You must mortgage properties or sell houses to cover your dues.");
@@ -292,75 +291,33 @@ public class Player {
         }
         while (stillBroke) {
 
+            //Set up Option Handler
             List<String> options = new ArrayList<>();
-            options.add("1. Mortgage Properties");
-            options.add("2. Sell Houses");
+            options.add("1. Mortgage Property");
+            options.add("2. Sell House");
             OptionHandler mortgageOrSellQuery = new OptionHandler("What would you like to do now?", options);
             int mortgageOrSell = mortgageOrSellQuery.handleOptions();
             options.clear();
 
             if (mortgageOrSell == 1) {
-                mortgagingProperties = true;
 
-                while (mortgagingProperties) {
-                    int propCount = 0;
-                    for (main.java.BoardSpace space : this.ownedProps) {
-                        PropertySpace prop = (PropertySpace) space;
-                        List<Integer> mortgageablePropsIndex = new ArrayList<>();
+                //Allow player to choose which property to mortgage, then execute that mortgage.
+                int whatToMortgage = this.chooseProperty("Mortgage Property");
+                this.mortgageProperty(whatToMortgage);
 
-                        if (!prop.isMortgaged()) {
-                            mortgageablePropsIndex.add(this.ownedProps.indexOf(prop));
-                            int mortgageValue = (prop.getPrice()) / 2;
-                            options.add(propCount + ". " + prop.getName() + ": $" + mortgageValue);
-                        }
-
-                        OptionHandler whatToMortgageQuery = new OptionHandler("Which property would you like to mortgage?", options);
-                        int whatToMortgage = whatToMortgageQuery.handleOptions();
-                        options.clear();
-
-                        this.mortgageProperty(whatToMortgage);
-
-                        //Check for stillBroke
-                        if (this.playerMoney < rent) {
-                            options.add("1. Mortgage more properties.");
-                            options.add("2. Switch to selling houses.");
-                            OptionHandler moreMortgageQuery = new OptionHandler("You still don't have enough to cover rent. Would you like to mortgage more properties, or switch to selling houses?", options);
-                            mortgageOrSell = moreMortgageQuery.handleOptions();
-                            options.clear();
-
-                            if (mortgageOrSell == 1) {
-                                continue;
-                            } else {
-                                mortgagingProperties = false;
-                            }
-                        } else {
-                            System.out.println("You covered rent! Phew!");
-                            stillBroke=false;
-                            mortgagingProperties=false;
-                        }
-                    }
+                //Check for stillBroke
+                if (this.playerMoney > rent) {
+                    System.out.println("You covered rent! Phew!");
+                    stillBroke=false;
                 }
+
+
             } else if (mortgageOrSell == 2) {
 
-                for (main.java.BoardSpace space : this.ownedProps) {
-                    PropertySpace prop = (PropertySpace) space;
-                    List<Integer> sellableHousesIndex = new ArrayList<>();
-                    int propCount = 0;
-                    if (prop.getType() == "House") {
-                        House house = (House) prop;
-                        if (house.getNumHouses() > 0) {
-                            sellableHousesIndex.add(this.ownedProps.indexOf(prop));
-                            int sellValue = (house.getHouseCost()) / 2;
-                            options.add(propCount + ". " + prop.getName() + ": $" + sellValue);
-                        }
+                //Allow player to choose which house to sell, then execute that sale.
+                int whatToSell = this.chooseProperty("Sell House");
+                this.sellHouse(whatToSell);
 
-                        OptionHandler whatToSellQuery = new OptionHandler("Which property would you like to sell a house from?", options);
-                        int whatToSell = whatToSellQuery.handleOptions();
-                        options.clear();
-
-                        this.sellHouse(whatToSell);
-                    }
-                }
                 if (playerMoney < rent) {
                     System.out.println("You still don't have enough to cover rent!");
                 } else {
@@ -458,6 +415,10 @@ public class Player {
         }
     }
 
+    public boolean isInJail() {
+        return inJail;
+    }
+
     public int chooseProperty(String action) {
         List<Integer> ownedPropsIndex = new ArrayList<>();
         List<String> options = new ArrayList<>();
@@ -471,7 +432,7 @@ public class Player {
                 PropertySpace prop = (PropertySpace) space;
                 if (!prop.isMortgaged()) {
                     optionsCounter++;
-                    options.add(optionsCounter + ". " + prop.getName());
+                    options.add(optionsCounter + ". " + prop.getName() + "\n    Mortgage Value: $" + (prop.getPrice()/2));
                     ownedPropsIndex.add(ownedPropsIndexCounter);
                 }
             }
@@ -488,7 +449,7 @@ public class Player {
                 PropertySpace prop = (PropertySpace) space;
                 if (prop.isMortgaged()) {
                     optionsCounter++;
-                    options.add(optionsCounter + ". " + prop.getName());
+                    options.add(optionsCounter + ". " + prop.getName() + "\n    Unmortgage Cost: $" + (prop.getPrice()*.55));
                     ownedPropsIndex.add(ownedPropsIndexCounter);
                 }
             }
@@ -510,7 +471,7 @@ public class Player {
                         List<House> validHouseLocations = this.meetsBuildCondition(house.getColor());
                         for (House validBuild : validHouseLocations) {
                             optionsCounter++;
-                            options.add(optionsCounter + ". " + validBuild.getName());
+                            options.add(optionsCounter + ". " + validBuild.getName() + "\n  House Cost: $" + validBuild.getHouseCost());
                             ownedPropsIndex.add(ownedPropsIndexCounter);
                         }
                     }
@@ -530,7 +491,7 @@ public class Player {
                 if (prop.getType() == "House") {
                     House house = (House) prop;
                     if (house.getNumHouses() > 0) {
-                        options.add(optionsCounter + ". " + prop.getName());
+                        options.add(optionsCounter + ". " + prop.getName() + "\n    House Value: $" + (house.getHouseCost()/2));
                         ownedPropsIndex.add(ownedPropsIndexCounter);
                     }
                 }

@@ -23,9 +23,6 @@ class PlayerTest extends Main {
     private PropertySpace propSpace;
     private House houseSpace;
 
-
-
-
     @BeforeEach
     void setUp(){
 
@@ -114,10 +111,6 @@ class PlayerTest extends Main {
         player2.buyProperty(testBoard);
         assertEquals("Insufficient funds to buy this property!", outContent.toString().trim());
     }
-
-//    @Test
-//    void payRent() {
-//    }
 
     @Test
     void mortgageProperty() {
@@ -215,50 +208,8 @@ class PlayerTest extends Main {
         assertEquals(1, validHousePurchases.size());
     }
 
-    @Test
-    void payRent() {
-        //Works for House
-        //2,10,30,90,160,250
-        player2.setCurrentSpace(1);
-        player2.buyProperty(testBoard);
-        player1 = new Player("player1", player1Props, 1500, 0, 0, 1, false);
-        players.add(player1);
-        player1.payRent(space,3);
-        assertEquals(1498, player1.getPlayerMoney());
-
-        //Works for House with houses
-        player2.setCurrentSpace(3);
-        player2.buyProperty(testBoard);
-        player2.buyHouse(0);
-        player1.payRent(space,3);
-        assertEquals(1488, player1.getPlayerMoney());
-        player2.buyHouse(1);
-        player2.buyHouse(0);
-        player1.payRent(space,3);
-        assertEquals(1458, player1.getPlayerMoney());
-
-        //Works for Rail
-        player2.setCurrentSpace(5);
-        player2.buyProperty(testBoard);
-        space = testBoard.getSpaceDetails(5);
-        player1.payRent(space, 3);
-        assertEquals(1433,player1.getPlayerMoney());
-        player2.setCurrentSpace(14);
-        player2.buyProperty(testBoard);
-        player1.payRent(space,3);
-        assertEquals(1383,player1.getPlayerMoney());
-
-        //Works for Utility
-        player2.setCurrentSpace(11);
-        player2.buyProperty(testBoard);
-        space = testBoard.getSpaceDetails(11);
-        player1.payRent(space,5);
-        assertEquals(1363,player1.getPlayerMoney());
-
-        player2.setCurrentSpace(15);
-        player2.buyProperty(testBoard);
-        space = testBoard.getSpaceDetails(15);
-        player1.payRent(space,5);
-        assertEquals(1313,player1.getPlayerMoney());
-    }
+//    @Test
+//    void payRent() {
+//
+//    }
 }

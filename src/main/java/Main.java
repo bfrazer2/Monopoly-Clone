@@ -56,6 +56,8 @@ public class Main {
         Boolean gameOver = false;
         Boolean selectingPlayerNum = true;
         Boolean takingTurn;
+        Boolean doubles = false;
+        int doublesCounter = 0;
         int turnCounter = 0;
         int playerNum = 0;
 
@@ -83,10 +85,12 @@ public class Main {
                 selectingPlayerNum = false;
             }
 
-            //Increment Turn
-            turnCounter++;
-            if (turnCounter>players.size()) {
-                turnCounter-=players.size();
+            //Increment Turn if the previous player did not roll doubles
+            if (!doubles) {
+                turnCounter++;
+                if (turnCounter > players.size()) {
+                    turnCounter -= players.size();
+                }
             }
 
             //Define Active Player
@@ -94,21 +98,53 @@ public class Main {
             String name = activePlayer.getName();
             System.out.println("\n" + name + "'s turn!");
 
+            //If in jail, pay $50 or attempt to roll doubles
+            if (activePlayer.isInJail() && activePlayer.getPlayerMoney() >= 50) {
+                options.add("1. Pay $50 to leave jail immediately.");
+                options.add("2. Take the risk and roll for doubles. If you land doubles you'll move & leave jail, but otherwise you'll remain in jail and won't move.");
+                OptionHandler jailChoiceQuery = new OptionHandler("You're in jail-what would you like to do?", options);
+                int jailChoice = jailChoiceQuery.handleOptions();
+                options.clear();
+                if (jailChoice == 1) {
+                    int newBalance = activePlayer.getPlayerMoney() - 50;
+                    activePlayer.setPlayerMoney(newBalance);
+                }
+            }
+
             //Roll Dice
-            Boolean doubles = false;
             int roll1 = activePlayer.rollDice();
             int roll2 = activePlayer.rollDice();
+
+            //Check for doubles, manipulate doubles bool & counter as necessary, leave jail if rolled doubles & in jail
             if (roll1 == roll2) {
                 doubles = true;
+                doublesCounter++;
+                if (activePlayer.isInJail()) {
+                    activePlayer.setInJail(false);
+                }
+            } else {
+                doubles = false;
+                doublesCounter = 0;
             }
+
             int totalRoll = roll1+roll2;
             System.out.println("\n" + name + " rolled a " + totalRoll + "!");
 
-            //Move
-            activePlayer.move(totalRoll);
+            //Go to Jail if 3rd Consecutive Doubles
+            if (doublesCounter==3) {
+                activePlayer.setCurrentSpace(10);
+                activePlayer.setInJail(true);
+                System.out.println("That's your third double roll in a row! You must be cheating! Go directly to jail!");
+                doubles = false;
+                doublesCounter = 0;
+            }
+
+            //If not in jail, move
+            if (!activePlayer.isInJail()) {
+                activePlayer.move(totalRoll);
+            }
             main.java.BoardSpace landedSpace = board.getSpaceDetails(activePlayer.getCurrentSpace());
             System.out.println("\n" + name + " landed on " + landedSpace.getName() + ".\n");
-
 
             //Check Space Type
             String type = landedSpace.getType();
@@ -176,7 +212,7 @@ public class Main {
                             if (players.size() == 2) {
                                 gameOver = true;
                                 System.out.println("\n" + landedSpaceOwner.getName() + " won! Congratulations!!");
-                                break;
+                                continue;
                             }
                             //If the game isn't over, we run assetsRetrieved, which handles the owed player receiving all the losing player's assets.
                             int assetsRetrieved = activePlayer.resolveBankruptcy(landedSpaceOwner);
@@ -197,7 +233,7 @@ public class Main {
                                     if (players.size() == 1) {
                                         gameOver = true;
                                         System.out.println("\n" + players.get(0).getName() + " won! Congratulations!!");
-                                        break;
+                                        continue;
                                     }
 
                                 }

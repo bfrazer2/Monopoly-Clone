@@ -56,7 +56,7 @@ public class PropertySpace extends main.java.BoardSpace {
         } else {
             Utility utility = (Utility) landedSpace;
             Player owner = Main.players.stream().filter(player -> player.getName().equals(utility.getOwner())).findFirst().orElse(null);
-            return utility.calculateRent(owner, owner.rollDice());
+            return utility.calculateRent(owner, diceRoll);
         }
     }
 }

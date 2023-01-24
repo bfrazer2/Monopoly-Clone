@@ -22,7 +22,7 @@ class BoardTest extends Main {
     void setUp(){
 
         myList.add(new main.java.BoardSpace("Go", "Action Space"));
-        myList.add(new House("Mediterranean Avenue","House",60,"",false,"Brown",50,0, new int[]{2,4,10,30,90,160,250}, false));
+        myList.add(new House("Mediterranean Avenue","House",60,"Player 1",false,"Brown",50,0, new int[]{2,4,10,30,90,160,250}, false));
 
         testBoard = new Board(myList);
 
@@ -32,7 +32,7 @@ class BoardTest extends Main {
     @Test
     void viewBoard() {
         testBoard.viewBoard();
-        assertEquals("1: Go\n2: Mediterranean Avenue", outContent.toString().trim());
+        assertEquals("1: Go\n2: Mediterranean Avenue\n  Owner: Player 1", outContent.toString().trim());
     }
     @Test
     void getSpaceDetails() {
