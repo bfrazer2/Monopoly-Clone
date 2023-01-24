@@ -1,3 +1,5 @@
+import main.java.BoardSpace;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -9,6 +11,7 @@ public class Player {
     private int railsOwned;
     private int currentSpace;
     private boolean inJail;
+
 
     public Player(String name) {
         this(name, new ArrayList<>(), 1500, 0, 0, 0, false);
@@ -104,46 +107,13 @@ public class Player {
         }
     }
 
-    public boolean payRent(main.java.BoardSpace landedSpace, int diceRoll) {
-        String type = landedSpace.getType();
-        Boolean broke = false;
-        if (type == "House") {
-            House house = (House)(landedSpace);
-            int houseRent = house.calculateRent();
-            if (this.playerMoney < houseRent) {
-                broke = true;
-            } else {
-                this.playerMoney -= houseRent;
-                System.out.println("You owe them $" + houseRent);
-                System.out.println("You now have $" + this.playerMoney + " after payment.");
-            }
-        } else if (type == "Rail") {
-            Rail rail = (Rail)(landedSpace);
-            Player owner = Main.players.stream().filter(player -> player.getName().equals(rail.getOwner())).findFirst().orElse(null);
-            int railRent = rail.calculateRent(owner);
-            if (this.playerMoney < railRent) {
-                broke = true;
-            } else {
-                this.playerMoney -= railRent;
-                System.out.println("You owe them $" + railRent);
-                System.out.println("You now have $" + this.playerMoney + " after payment.");
-            }
-        } else {
-            Utility utility = (Utility) (landedSpace);
-            Player owner = Main.players.stream().filter(player -> player.getName().equals(utility.getOwner())).findFirst().orElse(null);
-            int utilityRent = utility.calculateRent(owner, diceRoll);
-            if(this.playerMoney < utilityRent) {
-                broke = true;
-            } else {
-                this.playerMoney -= utilityRent;
-                System.out.println("You owe them $" + utilityRent);
-                System.out.println("You now have $" + this.playerMoney + " after payment.");
-            }
-        }
-        if (broke) {
-            return true;
-        } else {
+    public boolean payRent(int rent) {
+        if (this.playerMoney < rent) {
             return false;
+        } else {
+            this.playerMoney -= rent;
+            System.out.println("You paid $" + rent + " in rent. You now have $ " + this.playerMoney + " remaining.");
+            return true;
         }
     }
 
@@ -283,5 +253,125 @@ public class Player {
             }
         }
         return validBuildHouses;
+    }
+    public boolean resolveBroke (int rent) {
+        //GG Check
+        int totalAssets = this.playerMoney;
+        for (BoardSpace space : ownedProps) {
+            PropertySpace prop = (PropertySpace) space;
+            totalAssets += (prop.getPrice()/2);
+            if (prop.getType() == "House") {
+                House house = (House) prop;
+                if (house.getNumHouses()>0) {
+                    totalAssets += (house.getNumHouses() * (house.getHouseCost()/2));
+                }
+            }
+        }
+        if (totalAssets < rent) {
+            return false;
+        }
+
+        Boolean stillBroke = true;
+        Boolean mortgagingProperties = false;
+        Boolean sellingHouses = false;
+
+        System.out.println("You don't have enough money to cover your rent!");
+        System.out.println("You must mortgage properties or sell houses to cover your rent.");
+        System.out.println("You have the following properties which can be mortgaged for the displayed value:\n");
+
+        for (main.java.BoardSpace space : this.ownedProps) {
+            PropertySpace prop = (PropertySpace) space;
+            if (!prop.isMortgaged()) {
+                int mortgageValue = (prop.getPrice()) / 2;
+                System.out.println(prop.getName() + ": $" + mortgageValue);
+            }
+            if (prop.getType() == "House") {
+                House house = (House) prop;
+                int houseValue = house.getHouseCost() / 2;
+                System.out.println("This property also has " + house.getNumHouses() + " houses, which can be sold for " + houseValue);
+            }
+        }
+        while (stillBroke) {
+
+            List<String> options = new ArrayList<>();
+            options.add("1. Mortgage Properties");
+            options.add("2. Sell Houses");
+            OptionHandler mortgageOrSellQuery = new OptionHandler("What would you like to do now?", options);
+            int mortgageOrSell = mortgageOrSellQuery.handleOptions();
+            options.clear();
+
+            if (mortgageOrSell == 1) {
+                mortgagingProperties = true;
+
+                while (mortgagingProperties) {
+                    int propCount = 0;
+                    for (main.java.BoardSpace space : this.ownedProps) {
+                        PropertySpace prop = (PropertySpace) space;
+                        List<Integer> mortgageablePropsIndex = new ArrayList<>();
+
+                        if (!prop.isMortgaged()) {
+                            mortgageablePropsIndex.add(this.ownedProps.indexOf(prop));
+                            int mortgageValue = (prop.getPrice()) / 2;
+                            options.add(propCount + ". " + prop.getName() + ": $" + mortgageValue);
+                        }
+
+                        OptionHandler whatToMortgageQuery = new OptionHandler("Which property would you like to mortgage?", options);
+                        int whatToMortgage = whatToMortgageQuery.handleOptions();
+                        options.clear();
+
+                        this.mortgageProperty(whatToMortgage);
+
+                        //Check for stillBroke
+                        if (this.playerMoney < rent) {
+                            options.add("1. Mortgage more properties.");
+                            options.add("2. Switch to selling houses.");
+                            OptionHandler moreMortgageQuery = new OptionHandler("You still don't have enough to cover rent. Would you like to mortgage more properties, or switch to selling houses?", options);
+                            mortgageOrSell = moreMortgageQuery.handleOptions();
+                            options.clear();
+
+                            if (mortgageOrSell == 1) {
+                                continue;
+                            } else {
+                                mortgagingProperties = false;
+                            }
+                        } else {
+                            System.out.println("You covered rent! Phew!");
+                            stillBroke=false;
+                            mortgagingProperties=false;
+                        }
+                    }
+                }
+            } else if (mortgageOrSell == 2) {
+                sellingHouses = true;
+
+                for (main.java.BoardSpace space : this.ownedProps) {
+                    PropertySpace prop = (PropertySpace) space;
+                    List<Integer> sellableHousesIndex = new ArrayList<>();
+                    int propCount = 0;
+                    if (prop.getType() == "House") {
+                        House house = (House) prop;
+                        if (house.getNumHouses() > 0) {
+                            sellableHousesIndex.add(this.ownedProps.indexOf(prop));
+                            int sellValue = (house.getHouseCost()) / 2;
+                            options.add(propCount + ". " + prop.getName() + ": $" + sellValue);
+                        }
+
+                        OptionHandler whatToSellQuery = new OptionHandler("Which property would you like to sell a house from?", options);
+                        int whatToSell = whatToSellQuery.handleOptions();
+                        options.clear();
+
+                        this.sellHouse(whatToSell);
+                    }
+                }
+                if (playerMoney < rent) {
+                    System.out.println("You still don't have enough to cover rent!");
+                } else {
+                    System.out.println("You covered rent! Phew!");
+                    sellingHouses=false;
+                    stillBroke=false;
+                }
+            }
+        }
+        return true;
     }
 }

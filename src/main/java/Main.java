@@ -1,8 +1,4 @@
-import jdk.jshell.execution.Util;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.*;
 
 public class Main {
@@ -59,8 +55,10 @@ public class Main {
         Boolean gameOver = false;
         Boolean selectingPlayerNum = true;
         int turnCounter = 0;
-        int selectedPlayerNum = 0;
+        int playerNum = 0;
         Scanner scanner = new Scanner(System.in);
+
+        List<String> options = new ArrayList<>();
 
         while(!gameOver) {
 
@@ -68,35 +66,26 @@ public class Main {
 
             while (selectingPlayerNum) {
 
-                try {
+                options.add("1. Two Players");
+                options.add("2. Three Players");
+                options.add("3. Four Players");
+                OptionHandler playerNumQuery = new OptionHandler("How many players will play this game?", options);
+                playerNum = playerNumQuery.handleOptions();
+                options.clear();
 
-                    //Get Input
-                    System.out.print("Enter the number of players, between 2 and 4.");
-                    selectedPlayerNum = scanner.nextInt();
-                    if (selectedPlayerNum < 2 || selectedPlayerNum > 4) {
-                        throw new IllegalArgumentException("Invalid input, number must be between 2 and 4");
-                    }
-                    System.out.println("You entered: " + selectedPlayerNum);
-
-                    //Generate Players
-                    for (int i = 1; i <= selectedPlayerNum; i++) {
-                        players.add(new Player("Player " + i));
-                        System.out.println(players.get(i-1).getName() + " created!");
-                    }
-                    //Exit Loop
-                    selectingPlayerNum = false;
-
-                } catch (InputMismatchException e) {
-                    System.out.println("Invalid input, not a number");
-                } catch (IllegalArgumentException e) {
-                    System.out.println(e.getMessage());
+                //Generate Players
+                for (int i = 1; i <= playerNum; i++) {
+                    players.add(new Player("Player " + i));
+                    System.out.println(players.get(i-1).getName() + " created!");
                 }
+                //Exit Loop
+                selectingPlayerNum = false;
             }
 
             //Increment Turn
             turnCounter++;
-            if (turnCounter>selectedPlayerNum) {
-                turnCounter-=selectedPlayerNum;
+            if (turnCounter>playerNum) {
+                turnCounter-=playerNum;
             }
 
             //Define Active Player
@@ -129,7 +118,6 @@ public class Main {
                 PropertySpace prop = (PropertySpace) landedSpace;
                 if(prop.getOwner() == "") {
                     //Buy Prop Choice
-                    System.out.println("Would you like to purchase this property? \n 1: Yes \n 2: No");
                     if(type == "House") {
                         House houseProp = (House) prop;
                         System.out.println(houseProp.toString());
@@ -140,28 +128,23 @@ public class Main {
                         Utility utilityProp = (Utility) prop;
                         System.out.println(utilityProp.toString());
                     }
-                    try {
-                        int purchaseChoice = scanner.nextInt();
-                        if (purchaseChoice < 1 || purchaseChoice > 2) {
-                            throw new IllegalArgumentException("Invalid input, please choose either 1 or 2.");
-                        }
-                        if (purchaseChoice == 1) {
+
+                    OptionHandler playerNumQuery = new OptionHandler("Would you like to purchase this property?", options);
+                    options.add("1. Yes");
+                    options.add("2. No");
+                    int yesOrNo = playerNumQuery.handleOptions();
+                    options.clear();
+                        if (yesOrNo == 1) {
                             activePlayer.buyProperty(board);
                         } else {
                             System.out.println("You've chosen not to purchase this property.");
                         }
-                        gameOver = true;
-                    } catch (InputMismatchException e) {
-                        System.out.println("Invalid input, not a number");
-                    } catch (IllegalArgumentException e) {
-                        System.out.println(e.getMessage());
-                    }
                 } else {
                     System.out.println("Bad luck! You've landed on a property owned by " + prop.getOwner());
-                    boolean broke = activePlayer.payRent(landedSpace,totalRoll);
-                    if (broke) {
-                        System.out.println("You don't have enough money to cover your rent!");
-                        System.out.println("You must mortgage properties or sell houses to cover your rent.");
+                    int rent = prop.calculateRent(landedSpace,totalRoll);
+                    boolean paid = activePlayer.payRent(rent);
+                    if (!paid) {
+                        activePlayer.resolveBroke(rent);
                     }
                 }
             } else {

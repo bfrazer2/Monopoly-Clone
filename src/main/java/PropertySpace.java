@@ -38,4 +38,20 @@ public class PropertySpace extends main.java.BoardSpace {
     public int getPrice() {
         return price;
     }
+
+    public int calculateRent(main.java.BoardSpace landedSpace, int diceRoll) {
+        String type = landedSpace.getType();
+        if (type == "House") {
+            House house = (House) landedSpace;
+            return house.calculateRent();
+        } else if (type == "Rail") {
+            Rail rail = (Rail) landedSpace;
+            Player owner = Main.players.stream().filter(player -> player.getName().equals(rail.getOwner())).findFirst().orElse(null);
+            return rail.calculateRent(owner);
+        } else {
+            Utility utility = (Utility) landedSpace;
+            Player owner = Main.players.stream().filter(player -> player.getName().equals(utility.getOwner())).findFirst().orElse(null);
+            return utility.calculateRent(owner, owner.rollDice());
+        }
+    }
 }
