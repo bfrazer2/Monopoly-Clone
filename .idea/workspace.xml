@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4aaf33c7-9a39-4ce2-9990-b25ce85d54ae" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/OptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/OptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PropertySpace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PropertySpace.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +49,7 @@
     "WebServerToolWindowFactoryState": "false",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "Main",
+    "extract.method.default.visibility": "public",
     "last_directory_selection": "/Users/benjamin.frazer/Documents/IntelliJ/Monopoly/src/main/java",
     "last_opened_file_path": "/Users/benjamin.frazer/Documents/IntelliJ/Monopoly-Clone",
     "project.structure.last.edited": "Libraries",
@@ -136,7 +139,8 @@
       <workItem from="1674052827597" duration="136000" />
       <workItem from="1674055957573" duration="49620000" />
       <workItem from="1674489165862" duration="6481000" />
-      <workItem from="1674497283306" duration="27443000" />
+      <workItem from="1674497283306" duration="29320000" />
+      <workItem from="1674579302990" duration="10809000" />
     </task>
     <servers />
   </component>

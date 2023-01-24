@@ -12,6 +12,12 @@ public class Board extends Main{
             i++;
             main.java.BoardSpace mySpace = (main.java.BoardSpace)(space);
             System.out.println("" + i + ": " + mySpace.getName());
+            if (mySpace.getType() == "House" || mySpace.getType() == "Rail" || mySpace.getType() == "Utility") {
+                PropertySpace prop = (PropertySpace) mySpace;
+                if (prop.getOwner() != "") {
+                    System.out.print("  Owner: " + prop.getOwner());
+                }
+            }
         }
     }
 

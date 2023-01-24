@@ -273,10 +273,9 @@ public class Player {
 
         Boolean stillBroke = true;
         Boolean mortgagingProperties = false;
-        Boolean sellingHouses = false;
 
-        System.out.println("You don't have enough money to cover your rent!");
-        System.out.println("You must mortgage properties or sell houses to cover your rent.");
+        System.out.println("You don't have enough money to cover your dues!");
+        System.out.println("You must mortgage properties or sell houses to cover your dues.");
         System.out.println("You have the following properties which can be mortgaged for the displayed value:\n");
 
         for (main.java.BoardSpace space : this.ownedProps) {
@@ -342,7 +341,6 @@ public class Player {
                     }
                 }
             } else if (mortgageOrSell == 2) {
-                sellingHouses = true;
 
                 for (main.java.BoardSpace space : this.ownedProps) {
                     PropertySpace prop = (PropertySpace) space;
@@ -367,11 +365,188 @@ public class Player {
                     System.out.println("You still don't have enough to cover rent!");
                 } else {
                     System.out.println("You covered rent! Phew!");
-                    sellingHouses=false;
                     stillBroke=false;
                 }
             }
         }
         return true;
+    }
+
+    public int resolveBankruptcy(Player owedPlayer) {
+        //Setup for OptionHandler
+        List<String> options = new ArrayList<>();
+
+        //Houses will be sold by default and houseAssets (representing the total sale value of those houses) will be added to the owedPlayers balance
+        int houseAssets = 0;
+
+        for (BoardSpace space : this.ownedProps) {
+            if (space.getType() == "House") {
+                House house = (House) space;
+                if (house.getNumHouses()>0) {
+                    houseAssets += (house.getNumHouses() * (house.getHouseCost()/2));
+                }
+            }
+        }
+
+        //The player will now have the choice to unMortgage or pay interest on newly owned mortgaged properties-they must choose one or the other.
+
+        int totalUnMortgageCost = 0;
+        int totalInterestCost = 0;
+        int remainingBalance = 0;
+
+        for (BoardSpace space : this.ownedProps) {
+
+            //Checks minimum cost of newly acquired properties
+            int costToPayRemainingInterest = 0;
+            for (BoardSpace remainingSpace : ownedProps) {
+                PropertySpace remainingProp = (PropertySpace) remainingSpace;
+                costToPayRemainingInterest += (remainingProp.getPrice() * .05);
+            }
+            remainingBalance = owedPlayer.playerMoney + this.playerMoney + houseAssets - totalInterestCost - totalUnMortgageCost;
+
+            //If the player is bankrupted by bankrupting another player, the method immediately returns the funds the player needs to raise to stay in the game.
+            if (costToPayRemainingInterest > remainingBalance) {
+                return (-1)*(costToPayRemainingInterest);
+            }
+
+            //Knowing the player is not bankrupted by this transfer, all properties will be transferred to the new owner
+            owedPlayer.ownedProps.add(space);
+            PropertySpace prop = (PropertySpace) space;
+            prop.setOwner(owedPlayer.getName());
+
+            if (prop.isMortgaged()) {
+
+                //For each new mortgaged property, if the player cannot afford to unMortgage it fully, they are forced to pay the interest and accept the mortgaged property.
+                if (costToPayRemainingInterest > (remainingBalance-((prop.getPrice())*.55))) {
+                    totalInterestCost += (prop.getPrice() * .05);
+                    System.out.println("You now own " + prop.getName() + " but cannot afford to unmortgage it at this time.");
+                }
+                //However, if they can afford to unMortgage it  fully they are given the choice to do so or not.
+                else {
+                    options.add("1. Unmortgage this property. Costs: $" + ((prop.getPrice()) * .55));
+                    options.add("2. Only pay interest. Property stays mortgaged, and interest will need to be paid again to unmortgage in the future. Costs: $" + ((prop.getPrice()) * .05));
+                    System.out.println("\n You have $" + remainingBalance + " remaining.");
+                    OptionHandler unmortgageQuery = new OptionHandler("You now control " + prop.getName() + "which is mortgaged, what would you like to do with it?", options);
+                    int unmortgageChoice = unmortgageQuery.handleOptions();
+                    options.clear();
+
+                    //If they choose to unmortage it,the property's isMortgaged bool is set to false & the total cost of the player's unmortgages so far this turn is tallied.
+                    if (unmortgageChoice == 1) {
+                        prop.setUnMortgaged();
+                        totalUnMortgageCost += (prop.getPrice() * .55);
+                    }
+                    //If they don't, the cost of interest is tallied & the property remains mortgaged.
+                    else {
+                        totalInterestCost += (prop.getPrice() * .05);
+                    }
+                }
+            }
+        }
+        //The program returns the net effect on the owed players $
+        return houseAssets+this.playerMoney-totalUnMortgageCost-totalInterestCost;
+    }
+
+    public void removePlayer() {
+        for (main.java.BoardSpace foreclosedSpace  : this.getOwnedProps()) {
+            PropertySpace foreclosedProp = (PropertySpace) foreclosedSpace;
+            foreclosedProp.setUnMortgaged();
+            foreclosedProp.setOwner("");
+            if (foreclosedProp.getType() == "House") {
+                House foreclosedHouse = (House) foreclosedProp;
+                foreclosedHouse.setNumHouses(0);
+            }
+        }
+    }
+
+    public int chooseProperty(String action) {
+        List<Integer> ownedPropsIndex = new ArrayList<>();
+        List<String> options = new ArrayList<>();
+        int ownedPropsIndexCounter = -1;
+        int optionsCounter = 0;
+        int selectedProp = -1;
+
+        if (action == "Mortgage Property") {
+            for (BoardSpace space : this.ownedProps) {
+                ownedPropsIndexCounter++;
+                PropertySpace prop = (PropertySpace) space;
+                if (!prop.isMortgaged()) {
+                    optionsCounter++;
+                    options.add(optionsCounter + ". " + prop.getName());
+                    ownedPropsIndex.add(ownedPropsIndexCounter);
+                }
+            }
+            optionsCounter++;
+            options.add(optionsCounter + ". Back");
+            OptionHandler selectedPropQuery = new OptionHandler("What property would you like to mortgage?", options);
+            selectedProp = selectedPropQuery.handleOptions();
+            options.clear();
+        }
+
+        else if (action == "Unmortgage Property") {
+            for (BoardSpace space : this.ownedProps) {
+                ownedPropsIndexCounter++;
+                PropertySpace prop = (PropertySpace) space;
+                if (prop.isMortgaged()) {
+                    optionsCounter++;
+                    options.add(optionsCounter + ". " + prop.getName());
+                    ownedPropsIndex.add(ownedPropsIndexCounter);
+                }
+            }
+            optionsCounter++;
+            options.add(optionsCounter + ". Back");
+            OptionHandler selectedPropQuery = new OptionHandler("What property would you like to unmortgage?", options);
+            selectedProp = selectedPropQuery.handleOptions();
+            options.clear();
+        }
+
+        else if (action == "Buy House") {
+            List<String> checkedColors = new ArrayList<>();
+            for (BoardSpace space : this.ownedProps) {
+                ownedPropsIndexCounter++;
+                PropertySpace prop = (PropertySpace) space;
+                if (prop.getType() == "House") {
+                    House house = (House) prop;
+                    if (checkedColors.contains(house.getColor())) {
+                        List<House> validHouseLocations = this.meetsBuildCondition(house.getColor());
+                        for (House validBuild : validHouseLocations) {
+                            optionsCounter++;
+                            options.add(optionsCounter + ". " + validBuild.getName());
+                            ownedPropsIndex.add(ownedPropsIndexCounter);
+                        }
+                    }
+                }
+            }
+            optionsCounter++;
+            options.add(optionsCounter + ". Back");
+            OptionHandler selectedPropQuery = new OptionHandler("On which property would you like to build a house?", options);
+            selectedProp = selectedPropQuery.handleOptions();
+            options.clear();
+        }
+
+        if (action == "Sell House") {
+            for (BoardSpace space : this.ownedProps) {
+                ownedPropsIndexCounter++;
+                PropertySpace prop = (PropertySpace) space;
+                if (prop.getType() == "House") {
+                    House house = (House) prop;
+                    if (house.getNumHouses() > 0) {
+                        options.add(optionsCounter + ". " + prop.getName());
+                        ownedPropsIndex.add(ownedPropsIndexCounter);
+                    }
+                }
+            }
+            optionsCounter++;
+            options.add(optionsCounter + ". Back");
+            OptionHandler selectedPropQuery = new OptionHandler("From which property would you like to sell a house?", options);
+            selectedProp = selectedPropQuery.handleOptions();
+            options.clear();
+
+
+        }
+        if (selectedProp == optionsCounter) {
+            return -1;
+        } else {
+            return ownedPropsIndex.get(selectedProp-1);
+        }
     }
 }

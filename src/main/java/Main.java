@@ -55,16 +55,16 @@ public class Main {
         Player activePlayer;
         Boolean gameOver = false;
         Boolean selectingPlayerNum = true;
+        Boolean takingTurn;
         int turnCounter = 0;
         int playerNum = 0;
-        Scanner scanner = new Scanner(System.in);
 
+        //Setup for OptionsHandler
         List<String> options = new ArrayList<>();
 
         while(!gameOver) {
 
             //Accept user input for number of players
-
             while (selectingPlayerNum) {
 
                 options.add("1. Two Players");
@@ -85,8 +85,8 @@ public class Main {
 
             //Increment Turn
             turnCounter++;
-            if (turnCounter>playerNum+1) {
-                turnCounter-=playerNum+1;
+            if (turnCounter>players.size()) {
+                turnCounter-=players.size();
             }
 
             //Define Active Player
@@ -117,6 +117,9 @@ public class Main {
             if (type == "House" || type == "Rail" || type == "Utility") {
 
                 PropertySpace prop = (PropertySpace) landedSpace;
+
+                //Check to see if the landed space is already owned
+                //If not, show the player the space details and give them the option to purchase it
                 if(prop.getOwner() == "") {
                     //Buy Prop Choice
                     if(type == "House") {
@@ -130,6 +133,7 @@ public class Main {
                         System.out.println(utilityProp.toString());
                     }
 
+                    //Give the player the option to buy the property-if they can't afford to do so and choose yes anyway, the buyProperty method will handle it.
                     OptionHandler playerNumQuery = new OptionHandler("\nWould you like to purchase this property?", options);
                     options.add("1. Yes");
                     options.add("2. No");
@@ -140,16 +144,114 @@ public class Main {
                         } else {
                             System.out.println("You've chosen not to purchase this property.");
                         }
-                } else {
+                }
+
+                //If the property they've landed on is owned by another player, they have to pay rent!
+                else {
                     System.out.println("Bad luck! You've landed on a property owned by " + prop.getOwner());
+
+                    //Gets the total rent cost
                     int rent = prop.calculateRent(landedSpace,totalRoll);
+                    //Subtracts funds from rent-paying player if they can afford it, returns false if they cannot afford it.
                     boolean paid = activePlayer.payRent(rent);
+
                     if (!paid) {
-                        activePlayer.resolveBroke(rent);
+                        //If they failed to afford rent, the player will need to mortgage properties and/or sell houses to cover it. resolveBroke will handle that.
+                        //Returns false if they still cannot afford rent (and thus lose the game), and returns true if they succeeded in staying afloat.
+                        boolean isNotDefeated = activePlayer.resolveBroke(rent);
+
+                        PropertySpace landedPropSpace = (PropertySpace) landedSpace;
+                        Player landedSpaceOwner = landedPropSpace.getOwnerObject();
+
+                        if (isNotDefeated) {
+                            //The player owed rent receives it here as cash if the active player wasn't eliminated.
+                            int newBalance = landedSpaceOwner.getPlayerMoney() + rent;
+                            landedSpaceOwner.setPlayerMoney(newBalance);
+
+                            //The player paying now needs to pay their rent. We don't assign this to a boolean because the logical result is true & we won't be using it.
+                            activePlayer.payRent(rent);
+                        } else {
+                            System.out.println(name + "has been eliminated!");
+                            //If the active player was eliminated, we check for game over condition.
+                            if (players.size() == 2) {
+                                gameOver = true;
+                                System.out.println("\n" + landedSpaceOwner.getName() + " won! Congratulations!!");
+                                break;
+                            }
+                            //If the game isn't over, we run assetsRetrieved, which handles the owed player receiving all the losing player's assets.
+                            int assetsRetrieved = activePlayer.resolveBankruptcy(landedSpaceOwner);
+
+                            //Receiving the defeated player's assets can net negative money-if the owed player can't pay that in cash, they'll need to mortgage or sell.
+                            //Here we run resolveBroke again to handle that.
+                            if (assetsRetrieved+landedSpaceOwner.getPlayerMoney() < 0) {
+                                isNotDefeated = landedSpaceOwner.resolveBroke(assetsRetrieved);
+                                if (isNotDefeated) {
+                                    //If the owed player can now absorb the active players assets, we run the method which facilitates that.
+                                    assetsRetrieved = activePlayer.resolveBankruptcy(landedSpaceOwner);
+                                } else {
+                                    //If the owed player is eliminated, both player's assets are set to neutral. removePlayer will handle that
+                                    activePlayer.removePlayer();
+                                    landedSpaceOwner.removePlayer();
+
+                                    //We now check for a game over condition.
+                                    if (players.size() == 1) {
+                                        gameOver = true;
+                                        System.out.println("\n" + players.get(0).getName() + " won! Congratulations!!");
+                                        break;
+                                    }
+
+                                }
+                            }
+                            int newBalance = landedSpaceOwner.getPlayerMoney() + assetsRetrieved;
+                            landedSpaceOwner.setPlayerMoney(newBalance);
+                            players.remove(turnCounter-1);
+                        }
                     }
                 }
             } else {
                 System.out.println("This is an " + type + ". Functionality will be added here in future commits.");
+            }
+            
+            takingTurn = true;
+            while(takingTurn) {
+                options.add("1. View Balance");
+                options.add("2. View Board");
+                options.add("3. Buy House");
+                options.add("4. Sell House");
+                options.add("5. Mortgage Property");
+                options.add("6. UnMortgage Property");
+                options.add("7. Pass Turn");
+                OptionHandler whatToDoQuery = new OptionHandler("How many players will play this game?", options);
+                int whatToDo = whatToDoQuery.handleOptions();
+                options.clear();
+
+                if (whatToDo == 1) {
+                    System.out.println(activePlayer.getPlayerMoney());
+                } else if (whatToDo == 2) {
+                    board.viewBoard();
+                } else if (whatToDo == 3) {
+                    int propChoice = activePlayer.chooseProperty("Buy House");
+                    if (propChoice != -1) {
+                        activePlayer.buyHouse(propChoice);
+                    }
+                } else if (whatToDo == 4) {
+                    int propChoice = activePlayer.chooseProperty("Sell House");
+                    if (propChoice != -1) {
+                        activePlayer.sellHouse(propChoice);
+                    }
+                } else if (whatToDo == 5) {
+                    int propChoice = activePlayer.chooseProperty("Mortgage Property");
+                    if (propChoice != -1) {
+                        activePlayer.mortgageProperty(propChoice);
+                    }
+                } else if (whatToDo == 6) {
+                    int propChoice = activePlayer.chooseProperty("Mortgage Property");
+                    if (propChoice != -1) {
+                        activePlayer.unMortgageProperty(propChoice);
+                    }
+                } else {
+                    takingTurn = false;
+                }
             }
         }
     }
