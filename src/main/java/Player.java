@@ -254,7 +254,7 @@ public class Player {
         }
         return validBuildHouses;
     }
-    public boolean resolveBroke (int rent) {
+    public boolean resolveBroke (int rent, Scanner scanner) {
         //GG Check
         int totalAssets = this.playerMoney;
         for (BoardSpace space : ownedProps) {
@@ -296,13 +296,13 @@ public class Player {
             options.add("1. Mortgage Property");
             options.add("2. Sell House");
             OptionHandler mortgageOrSellQuery = new OptionHandler("What would you like to do now?", options);
-            int mortgageOrSell = mortgageOrSellQuery.handleOptions();
+            int mortgageOrSell = mortgageOrSellQuery.handleOptions(scanner);
             options.clear();
 
             if (mortgageOrSell == 1) {
 
                 //Allow player to choose which property to mortgage, then execute that mortgage.
-                int whatToMortgage = this.chooseProperty("Mortgage Property");
+                int whatToMortgage = this.chooseProperty("Mortgage Property", scanner);
                 this.mortgageProperty(whatToMortgage);
 
                 //Check for stillBroke
@@ -315,7 +315,7 @@ public class Player {
             } else if (mortgageOrSell == 2) {
 
                 //Allow player to choose which house to sell, then execute that sale.
-                int whatToSell = this.chooseProperty("Sell House");
+                int whatToSell = this.chooseProperty("Sell House", scanner);
                 this.sellHouse(whatToSell);
 
                 if (playerMoney < rent) {
@@ -329,7 +329,7 @@ public class Player {
         return true;
     }
 
-    public int resolveBankruptcy(Player owedPlayer) {
+    public int resolveBankruptcy(Player owedPlayer, Scanner scanner) {
         //Setup for OptionHandler
         List<String> options = new ArrayList<>();
 
@@ -384,7 +384,7 @@ public class Player {
                     options.add("2. Only pay interest. Property stays mortgaged, and interest will need to be paid again to unmortgage in the future. Costs: $" + ((prop.getPrice()) * .05));
                     System.out.println("\n You have $" + remainingBalance + " remaining.");
                     OptionHandler unmortgageQuery = new OptionHandler("You now control " + prop.getName() + "which is mortgaged, what would you like to do with it?", options);
-                    int unmortgageChoice = unmortgageQuery.handleOptions();
+                    int unmortgageChoice = unmortgageQuery.handleOptions(scanner);
                     options.clear();
 
                     //If they choose to unmortage it,the property's isMortgaged bool is set to false & the total cost of the player's unmortgages so far this turn is tallied.
@@ -419,7 +419,7 @@ public class Player {
         return inJail;
     }
 
-    public int chooseProperty(String action) {
+    public int chooseProperty(String action, Scanner scanner) {
         List<Integer> ownedPropsIndex = new ArrayList<>();
         List<String> options = new ArrayList<>();
         int ownedPropsIndexCounter = -1;
@@ -439,7 +439,7 @@ public class Player {
             optionsCounter++;
             options.add(optionsCounter + ". Back");
             OptionHandler selectedPropQuery = new OptionHandler("What property would you like to mortgage?", options);
-            selectedProp = selectedPropQuery.handleOptions();
+            selectedProp = selectedPropQuery.handleOptions(scanner);
             options.clear();
         }
 
@@ -456,7 +456,7 @@ public class Player {
             optionsCounter++;
             options.add(optionsCounter + ". Back");
             OptionHandler selectedPropQuery = new OptionHandler("What property would you like to unmortgage?", options);
-            selectedProp = selectedPropQuery.handleOptions();
+            selectedProp = selectedPropQuery.handleOptions(scanner);
             options.clear();
         }
 
@@ -480,7 +480,7 @@ public class Player {
             optionsCounter++;
             options.add(optionsCounter + ". Back");
             OptionHandler selectedPropQuery = new OptionHandler("On which property would you like to build a house?", options);
-            selectedProp = selectedPropQuery.handleOptions();
+            selectedProp = selectedPropQuery.handleOptions(scanner);
             options.clear();
         }
 
@@ -491,6 +491,7 @@ public class Player {
                 if (prop.getType() == "House") {
                     House house = (House) prop;
                     if (house.getNumHouses() > 0) {
+                        optionsCounter++;
                         options.add(optionsCounter + ". " + prop.getName() + "\n    House Value: $" + (house.getHouseCost()/2));
                         ownedPropsIndex.add(ownedPropsIndexCounter);
                     }
@@ -499,7 +500,7 @@ public class Player {
             optionsCounter++;
             options.add(optionsCounter + ". Back");
             OptionHandler selectedPropQuery = new OptionHandler("From which property would you like to sell a house?", options);
-            selectedProp = selectedPropQuery.handleOptions();
+            selectedProp = selectedPropQuery.handleOptions(scanner);
             options.clear();
 
 

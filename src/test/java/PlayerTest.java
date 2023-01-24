@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import static org.mockito.Mockito.mock;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 class PlayerTest extends Main {
 
@@ -24,6 +25,8 @@ class PlayerTest extends Main {
     private main.java.BoardSpace space;
     private PropertySpace propSpace;
     private House houseSpace;
+    private Scanner mockScanner = mock(Scanner.class);
+    private final Scanner scanner = mock(Scanner.class);
 
     @BeforeEach
     void setUp(){
@@ -221,14 +224,37 @@ class PlayerTest extends Main {
     }
 
     @Test
-    void resolveBroke() {
+    void resolveBrokeCantPay() {
 
         //Returns false if player cannot pay
         player2.setPlayerMoney(0);
-        boolean res = player2.resolveBroke(1);
+        boolean res = player2.resolveBroke(1, scanner);
         assertFalse(res);
 
-        //Returns true if player can pay
+        player2.setPlayerMoney(120+200+100);
 
+        player2.setCurrentSpace(1);
+        player2.buyProperty(testBoard);
+        player2.setCurrentSpace(3);
+        player2.buyProperty(testBoard);
+        player2.buyHouse(0);
+        player2.buyHouse(1);
+        player2.setCurrentSpace(5);
+        player2.buyProperty(testBoard);
+        player2.setCurrentSpace(6);
+        player2.buyProperty(testBoard);
+
+        when(mockScanner.nextInt()).thenReturn(1,3,2,1);
+        res = player2.resolveBroke(125, mockScanner);
+        assertTrue(res);
+
+        main.java.BoardSpace mortgagedProp1 = player2.getOwnedProps().get(2);
+        PropertySpace prop1 = (PropertySpace) mortgagedProp1;
+        assertTrue(prop1.isMortgaged());
+
+        main.java.BoardSpace mortgagedProp2 = player2.getOwnedProps().get(0);
+        PropertySpace prop2 = (PropertySpace) mortgagedProp2;
+        House house = (House)prop2;
+        assertEquals(0,house.getNumHouses());
     }
 }

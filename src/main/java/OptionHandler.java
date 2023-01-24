@@ -9,8 +9,8 @@ public class OptionHandler {
         this.options = options;
     }
 
-    public int handleOptions() {
-        Scanner scanner = new Scanner(System.in);
+    public int handleOptions(Scanner scanner) {
+
         Boolean notResolved = true;
         int optionInt = 0;
         while(notResolved) {

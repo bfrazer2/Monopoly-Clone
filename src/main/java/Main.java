@@ -39,7 +39,7 @@ public class Main {
         spaces.add(new House("Marvin Gardens", "House",280,"",false,"Yellow",150,0,new int[]{24,120,360,850,1025,1200}, false));
         spaces.add(new main.java.BoardSpace("Go To Jail","Action Space"));
         spaces.add(new House("Pacific Avenue", "House",300,"",false,"Green",200,0,new int[]{26,130,390,900,1100,1275}, false));
-        spaces.add(new House("North Carolina Avenue", "House",300,"",false,"Geen",200,0,new int[]{26,130,390,900,1100,1275}, false));
+        spaces.add(new House("North Carolina Avenue", "House",300,"",false,"Green",200,0,new int[]{26,130,390,900,1100,1275}, false));
         spaces.add(new main.java.BoardSpace("Community Chest", "Action Space"));
         spaces.add(new House("Pennsylvania Ave", "House",320,"",false,"Green",200,0,new int[]{28,150,450,1000,1200,1400}, false));
         spaces.add(new Rail("Short Line", "Rail",200,"",false));
@@ -62,6 +62,7 @@ public class Main {
         int playerNum = 0;
 
         //Setup for OptionsHandler
+        Scanner scanner = new Scanner(System.in);
         List<String> options = new ArrayList<>();
 
         while(!gameOver) {
@@ -73,7 +74,7 @@ public class Main {
                 options.add("2. Three Players");
                 options.add("3. Four Players");
                 OptionHandler playerNumQuery = new OptionHandler("How many players will play this game?", options);
-                playerNum = playerNumQuery.handleOptions();
+                playerNum = playerNumQuery.handleOptions(scanner);
                 options.clear();
 
                 //Generate Players
@@ -103,7 +104,7 @@ public class Main {
                 options.add("1. Pay $50 to leave jail immediately.");
                 options.add("2. Take the risk and roll for doubles. If you land doubles you'll move & leave jail, but otherwise you'll remain in jail and won't move.");
                 OptionHandler jailChoiceQuery = new OptionHandler("You're in jail-what would you like to do?", options);
-                int jailChoice = jailChoiceQuery.handleOptions();
+                int jailChoice = jailChoiceQuery.handleOptions(scanner);
                 options.clear();
                 if (jailChoice == 1) {
                     int newBalance = activePlayer.getPlayerMoney() - 50;
@@ -173,7 +174,7 @@ public class Main {
                     OptionHandler playerNumQuery = new OptionHandler("\nWould you like to purchase this property?", options);
                     options.add("1. Yes");
                     options.add("2. No");
-                    int yesOrNo = playerNumQuery.handleOptions();
+                    int yesOrNo = playerNumQuery.handleOptions(scanner);
                     options.clear();
                         if (yesOrNo == 1) {
                             activePlayer.buyProperty(board);
@@ -194,7 +195,7 @@ public class Main {
                     if (!paid) {
                         //If they failed to afford rent, the player will need to mortgage properties and/or sell houses to cover it. resolveBroke will handle that.
                         //Returns false if they still cannot afford rent (and thus lose the game), and returns true if they succeeded in staying afloat.
-                        boolean isNotDefeated = activePlayer.resolveBroke(rent);
+                        boolean isNotDefeated = activePlayer.resolveBroke(rent, scanner);
 
                         PropertySpace landedPropSpace = (PropertySpace) landedSpace;
                         Player landedSpaceOwner = landedPropSpace.getOwnerObject();
@@ -215,15 +216,15 @@ public class Main {
                                 continue;
                             }
                             //If the game isn't over, we run assetsRetrieved, which handles the owed player receiving all the losing player's assets.
-                            int assetsRetrieved = activePlayer.resolveBankruptcy(landedSpaceOwner);
+                            int assetsRetrieved = activePlayer.resolveBankruptcy(landedSpaceOwner, scanner);
 
                             //Receiving the defeated player's assets can net negative money-if the owed player can't pay that in cash, they'll need to mortgage or sell.
                             //Here we run resolveBroke again to handle that.
                             if (assetsRetrieved+landedSpaceOwner.getPlayerMoney() < 0) {
-                                isNotDefeated = landedSpaceOwner.resolveBroke(assetsRetrieved);
+                                isNotDefeated = landedSpaceOwner.resolveBroke(assetsRetrieved, scanner);
                                 if (isNotDefeated) {
                                     //If the owed player can now absorb the active players assets, we run the method which facilitates that.
-                                    assetsRetrieved = activePlayer.resolveBankruptcy(landedSpaceOwner);
+                                    assetsRetrieved = activePlayer.resolveBankruptcy(landedSpaceOwner, scanner);
                                 } else {
                                     //If the owed player is eliminated, both player's assets are set to neutral. removePlayer will handle that
                                     activePlayer.removePlayer();
@@ -258,7 +259,7 @@ public class Main {
                 options.add("6. UnMortgage Property");
                 options.add("7. Pass Turn");
                 OptionHandler whatToDoQuery = new OptionHandler("How many players will play this game?", options);
-                int whatToDo = whatToDoQuery.handleOptions();
+                int whatToDo = whatToDoQuery.handleOptions(scanner);
                 options.clear();
 
                 if (whatToDo == 1) {
@@ -266,22 +267,22 @@ public class Main {
                 } else if (whatToDo == 2) {
                     board.viewBoard();
                 } else if (whatToDo == 3) {
-                    int propChoice = activePlayer.chooseProperty("Buy House");
+                    int propChoice = activePlayer.chooseProperty("Buy House", scanner);
                     if (propChoice != -1) {
                         activePlayer.buyHouse(propChoice);
                     }
                 } else if (whatToDo == 4) {
-                    int propChoice = activePlayer.chooseProperty("Sell House");
+                    int propChoice = activePlayer.chooseProperty("Sell House", scanner);
                     if (propChoice != -1) {
                         activePlayer.sellHouse(propChoice);
                     }
                 } else if (whatToDo == 5) {
-                    int propChoice = activePlayer.chooseProperty("Mortgage Property");
+                    int propChoice = activePlayer.chooseProperty("Mortgage Property", scanner);
                     if (propChoice != -1) {
                         activePlayer.mortgageProperty(propChoice);
                     }
                 } else if (whatToDo == 6) {
-                    int propChoice = activePlayer.chooseProperty("Mortgage Property");
+                    int propChoice = activePlayer.chooseProperty("Mortgage Property", scanner);
                     if (propChoice != -1) {
                         activePlayer.unMortgageProperty(propChoice);
                     }

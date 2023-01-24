@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="PlayerTest" time="0.053" tests="14" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="PlayerTest" time="1.082" tests="14" errors="14" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="19"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/Users/benjamin.frazer/Documents/IntelliJ/Monopoly-Clone/target/test-classes:/Users/benjamin.frazer/Documents/IntelliJ/Monopoly-Clone/target/classes:/Users/benjamin.frazer/.m2/repository/junit/junit/4.13.1/junit-4.13.1.jar:/Users/benjamin.frazer/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/benjamin.frazer/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.8.1/junit-jupiter-api-5.8.1.jar:/Users/benjamin.frazer/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/benjamin.frazer/.m2/repository/org/junit/platform/junit-platform-commons/1.8.1/junit-platform-commons-1.8.1.jar:/Users/benjamin.frazer/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/benjamin.frazer/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.1/junit-jupiter-engine-5.8.1.jar:/Users/benjamin.frazer/.m2/repository/org/junit/platform/junit-platform-engine/1.8.1/junit-platform-engine-1.8.1.jar:/Users/benjamin.frazer/.m2/repository/org/mockito/mockito-core/3.5.13/mockito-core-3.5.13.jar:/Users/benjamin.frazer/.m2/repository/net/bytebuddy/byte-buddy/1.10.15/byte-buddy-1.10.15.jar:/Users/benjamin.frazer/.m2/repository/net/bytebuddy/byte-buddy-agent/1.10.15/byte-buddy-agent-1.10.15.jar:/Users/benjamin.frazer/.m2/repository/org/objenesis/objenesis/3.1/objenesis-3.1.jar:"/>
+    <property name="java.class.path" value="/Users/benjamin.frazer/Documents/IntelliJ/Monopoly-Clone/target/test-classes:/Users/benjamin.frazer/Documents/IntelliJ/Monopoly-Clone/target/classes:/Users/benjamin.frazer/.m2/repository/junit/junit/4.13.1/junit-4.13.1.jar:/Users/benjamin.frazer/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/benjamin.frazer/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.8.1/junit-jupiter-api-5.8.1.jar:/Users/benjamin.frazer/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/benjamin.frazer/.m2/repository/org/junit/platform/junit-platform-commons/1.8.1/junit-platform-commons-1.8.1.jar:/Users/benjamin.frazer/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/benjamin.frazer/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.1/junit-jupiter-engine-5.8.1.jar:/Users/benjamin.frazer/.m2/repository/org/junit/platform/junit-platform-engine/1.8.1/junit-platform-engine-1.8.1.jar:/Users/benjamin.frazer/.m2/repository/org/mockito/mockito-core/4.0.0/mockito-core-4.0.0.jar:/Users/benjamin.frazer/.m2/repository/net/bytebuddy/byte-buddy/1.11.19/byte-buddy-1.11.19.jar:/Users/benjamin.frazer/.m2/repository/net/bytebuddy/byte-buddy-agent/1.11.19/byte-buddy-agent-1.11.19.jar:/Users/benjamin.frazer/.m2/repository/org/objenesis/objenesis/3.2/objenesis-3.2.jar:/Users/benjamin.frazer/.m2/repository/org/mockito/mockito-inline/4.0.0/mockito-inline-4.0.0.jar:"/>
     <property name="java.vm.vendor" value="Homebrew"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.vendor.url" value="https://github.com/Homebrew/homebrew-core/issues"/>
+    <property name="user.timezone" value="America/New_York"/>
     <property name="os.name" value="Mac OS X"/>
     <property name="java.vm.specification.version" value="19"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/usr/local/Cellar/openjdk/19.0.1/libexec/openjdk.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/benjamin.frazer/Documents/IntelliJ/Monopoly-Clone/target/surefire/surefirebooter-20230124163832160_3.jar /Users/benjamin.frazer/Documents/IntelliJ/Monopoly-Clone/target/surefire 2023-01-24T16-38-31_876-jvmRun1 surefire-20230124163832160_1tmp surefire_0-20230124163832160_2tmp"/>
+    <property name="sun.java.command" value="/Users/benjamin.frazer/Documents/IntelliJ/Monopoly-Clone/target/surefire/surefirebooter3733803642030941322.jar /Users/benjamin.frazer/Documents/IntelliJ/Monopoly-Clone/target/surefire 2023-01-24T17-56-52_359-jvmRun1 surefire15269187158817710263tmp surefire_120450951482309800tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="/Users/benjamin.frazer/Documents/IntelliJ/Monopoly-Clone/target/test-classes:/Users/benjamin.frazer/Documents/IntelliJ/Monopoly-Clone/target/classes:/Users/benjamin.frazer/.m2/repository/junit/junit/4.13.1/junit-4.13.1.jar:/Users/benjamin.frazer/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/benjamin.frazer/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.8.1/junit-jupiter-api-5.8.1.jar:/Users/benjamin.frazer/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/benjamin.frazer/.m2/repository/org/junit/platform/junit-platform-commons/1.8.1/junit-platform-commons-1.8.1.jar:/Users/benjamin.frazer/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/benjamin.frazer/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.1/junit-jupiter-engine-5.8.1.jar:/Users/benjamin.frazer/.m2/repository/org/junit/platform/junit-platform-engine/1.8.1/junit-platform-engine-1.8.1.jar:/Users/benjamin.frazer/.m2/repository/org/mockito/mockito-core/3.5.13/mockito-core-3.5.13.jar:/Users/benjamin.frazer/.m2/repository/net/bytebuddy/byte-buddy/1.10.15/byte-buddy-1.10.15.jar:/Users/benjamin.frazer/.m2/repository/net/bytebuddy/byte-buddy-agent/1.10.15/byte-buddy-agent-1.10.15.jar:/Users/benjamin.frazer/.m2/repository/org/objenesis/objenesis/3.1/objenesis-3.1.jar:"/>
+    <property name="surefire.test.class.path" value="/Users/benjamin.frazer/Documents/IntelliJ/Monopoly-Clone/target/test-classes:/Users/benjamin.frazer/Documents/IntelliJ/Monopoly-Clone/target/classes:/Users/benjamin.frazer/.m2/repository/junit/junit/4.13.1/junit-4.13.1.jar:/Users/benjamin.frazer/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/benjamin.frazer/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.8.1/junit-jupiter-api-5.8.1.jar:/Users/benjamin.frazer/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/benjamin.frazer/.m2/repository/org/junit/platform/junit-platform-commons/1.8.1/junit-platform-commons-1.8.1.jar:/Users/benjamin.frazer/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/benjamin.frazer/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.1/junit-jupiter-engine-5.8.1.jar:/Users/benjamin.frazer/.m2/repository/org/junit/platform/junit-platform-engine/1.8.1/junit-platform-engine-1.8.1.jar:/Users/benjamin.frazer/.m2/repository/org/mockito/mockito-core/4.0.0/mockito-core-4.0.0.jar:/Users/benjamin.frazer/.m2/repository/net/bytebuddy/byte-buddy/1.11.19/byte-buddy-1.11.19.jar:/Users/benjamin.frazer/.m2/repository/net/bytebuddy/byte-buddy-agent/1.11.19/byte-buddy-agent-1.11.19.jar:/Users/benjamin.frazer/.m2/repository/org/objenesis/objenesis/3.2/objenesis-3.2.jar:/Users/benjamin.frazer/.m2/repository/org/mockito/mockito-inline/4.0.0/mockito-inline-4.0.0.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/Users/benjamin.frazer"/>
     <property name="user.language" value="en"/>
@@ -29,7 +30,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/benjamin.frazer/Documents/IntelliJ/Monopoly-Clone/target/surefire/surefirebooter-20230124163832160_3.jar"/>
+    <property name="surefire.real.class.path" value="/Users/benjamin.frazer/Documents/IntelliJ/Monopoly-Clone/target/surefire/surefirebooter3733803642030941322.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="19.0.1"/>
@@ -58,18 +59,382 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="63.0"/>
   </properties>
-  <testcase name="buyProperty" classname="PlayerTest" time="0.013"/>
-  <testcase name="insufficientFunds" classname="PlayerTest" time="0.001"/>
-  <testcase name="hasMonopoly" classname="PlayerTest" time="0.008"/>
-  <testcase name="sellHouse" classname="PlayerTest" time="0.002"/>
-  <testcase name="countUtilities" classname="PlayerTest" time="0.002"/>
-  <testcase name="mortgageProperty" classname="PlayerTest" time="0.001"/>
-  <testcase name="countRails" classname="PlayerTest" time="0.001"/>
-  <testcase name="buyHouse" classname="PlayerTest" time="0.001"/>
-  <testcase name="payRent" classname="PlayerTest" time="0.005"/>
-  <testcase name="rollDice" classname="PlayerTest" time="0.002"/>
-  <testcase name="move" classname="PlayerTest" time="0.001"/>
-  <testcase name="unMortgageProperty" classname="PlayerTest" time="0.002"/>
-  <testcase name="resolveBroke" classname="PlayerTest" time="0"/>
-  <testcase name="meetsBuildCondition" classname="PlayerTest" time="0.001"/>
+  <testcase name="buyProperty" classname="PlayerTest" time="0.012">
+    <error type="org.mockito.exceptions.base.MockitoException"><![CDATA[org.mockito.exceptions.base.MockitoException: 
+
+Mockito cannot mock this class: class java.util.Scanner.
+Can not mock final classes with the following settings :
+ - explicit serialization (e.g. withSettings().serializable())
+ - extra interfaces (e.g. withSettings().extraInterfaces(...))
+
+You are seeing this disclaimer because Mockito is configured to create inlined mocks.
+You can learn about inline mocks and their limitations under item #39 of the Mockito class javadoc.
+
+Underlying exception : org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalStateException: 
+
+Byte Buddy could not instrument all classes within the mock's type hierarchy
+
+This problem should never occur for javac-compiled classes. This problem has been observed for classes that are:
+ - Compiled by older versions of scalac
+ - Classes that are part of the Android distribution
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 63
+	at PlayerTest.<init>(PlayerTest.java:28)
+]]></error>
+  </testcase>
+  <testcase name="insufficientFunds" classname="PlayerTest" time="0.001">
+    <error type="org.mockito.exceptions.base.MockitoException"><![CDATA[org.mockito.exceptions.base.MockitoException: 
+
+Mockito cannot mock this class: class java.util.Scanner.
+Can not mock final classes with the following settings :
+ - explicit serialization (e.g. withSettings().serializable())
+ - extra interfaces (e.g. withSettings().extraInterfaces(...))
+
+You are seeing this disclaimer because Mockito is configured to create inlined mocks.
+You can learn about inline mocks and their limitations under item #39 of the Mockito class javadoc.
+
+Underlying exception : org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalStateException: 
+
+Byte Buddy could not instrument all classes within the mock's type hierarchy
+
+This problem should never occur for javac-compiled classes. This problem has been observed for classes that are:
+ - Compiled by older versions of scalac
+ - Classes that are part of the Android distribution
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 63
+	at PlayerTest.<init>(PlayerTest.java:28)
+]]></error>
+  </testcase>
+  <testcase name="hasMonopoly" classname="PlayerTest" time="0.001">
+    <error type="org.mockito.exceptions.base.MockitoException"><![CDATA[org.mockito.exceptions.base.MockitoException: 
+
+Mockito cannot mock this class: class java.util.Scanner.
+Can not mock final classes with the following settings :
+ - explicit serialization (e.g. withSettings().serializable())
+ - extra interfaces (e.g. withSettings().extraInterfaces(...))
+
+You are seeing this disclaimer because Mockito is configured to create inlined mocks.
+You can learn about inline mocks and their limitations under item #39 of the Mockito class javadoc.
+
+Underlying exception : org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalStateException: 
+
+Byte Buddy could not instrument all classes within the mock's type hierarchy
+
+This problem should never occur for javac-compiled classes. This problem has been observed for classes that are:
+ - Compiled by older versions of scalac
+ - Classes that are part of the Android distribution
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 63
+	at PlayerTest.<init>(PlayerTest.java:28)
+]]></error>
+  </testcase>
+  <testcase name="sellHouse" classname="PlayerTest" time="0.001">
+    <error type="org.mockito.exceptions.base.MockitoException"><![CDATA[org.mockito.exceptions.base.MockitoException: 
+
+Mockito cannot mock this class: class java.util.Scanner.
+Can not mock final classes with the following settings :
+ - explicit serialization (e.g. withSettings().serializable())
+ - extra interfaces (e.g. withSettings().extraInterfaces(...))
+
+You are seeing this disclaimer because Mockito is configured to create inlined mocks.
+You can learn about inline mocks and their limitations under item #39 of the Mockito class javadoc.
+
+Underlying exception : org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalStateException: 
+
+Byte Buddy could not instrument all classes within the mock's type hierarchy
+
+This problem should never occur for javac-compiled classes. This problem has been observed for classes that are:
+ - Compiled by older versions of scalac
+ - Classes that are part of the Android distribution
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 63
+	at PlayerTest.<init>(PlayerTest.java:28)
+]]></error>
+  </testcase>
+  <testcase name="countUtilities" classname="PlayerTest" time="0.001">
+    <error type="org.mockito.exceptions.base.MockitoException"><![CDATA[org.mockito.exceptions.base.MockitoException: 
+
+Mockito cannot mock this class: class java.util.Scanner.
+Can not mock final classes with the following settings :
+ - explicit serialization (e.g. withSettings().serializable())
+ - extra interfaces (e.g. withSettings().extraInterfaces(...))
+
+You are seeing this disclaimer because Mockito is configured to create inlined mocks.
+You can learn about inline mocks and their limitations under item #39 of the Mockito class javadoc.
+
+Underlying exception : org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalStateException: 
+
+Byte Buddy could not instrument all classes within the mock's type hierarchy
+
+This problem should never occur for javac-compiled classes. This problem has been observed for classes that are:
+ - Compiled by older versions of scalac
+ - Classes that are part of the Android distribution
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 63
+	at PlayerTest.<init>(PlayerTest.java:28)
+]]></error>
+  </testcase>
+  <testcase name="mortgageProperty" classname="PlayerTest" time="0">
+    <error type="org.mockito.exceptions.base.MockitoException"><![CDATA[org.mockito.exceptions.base.MockitoException: 
+
+Mockito cannot mock this class: class java.util.Scanner.
+Can not mock final classes with the following settings :
+ - explicit serialization (e.g. withSettings().serializable())
+ - extra interfaces (e.g. withSettings().extraInterfaces(...))
+
+You are seeing this disclaimer because Mockito is configured to create inlined mocks.
+You can learn about inline mocks and their limitations under item #39 of the Mockito class javadoc.
+
+Underlying exception : org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalStateException: 
+
+Byte Buddy could not instrument all classes within the mock's type hierarchy
+
+This problem should never occur for javac-compiled classes. This problem has been observed for classes that are:
+ - Compiled by older versions of scalac
+ - Classes that are part of the Android distribution
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 63
+	at PlayerTest.<init>(PlayerTest.java:28)
+]]></error>
+  </testcase>
+  <testcase name="countRails" classname="PlayerTest" time="0.001">
+    <error type="org.mockito.exceptions.base.MockitoException"><![CDATA[org.mockito.exceptions.base.MockitoException: 
+
+Mockito cannot mock this class: class java.util.Scanner.
+Can not mock final classes with the following settings :
+ - explicit serialization (e.g. withSettings().serializable())
+ - extra interfaces (e.g. withSettings().extraInterfaces(...))
+
+You are seeing this disclaimer because Mockito is configured to create inlined mocks.
+You can learn about inline mocks and their limitations under item #39 of the Mockito class javadoc.
+
+Underlying exception : org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalStateException: 
+
+Byte Buddy could not instrument all classes within the mock's type hierarchy
+
+This problem should never occur for javac-compiled classes. This problem has been observed for classes that are:
+ - Compiled by older versions of scalac
+ - Classes that are part of the Android distribution
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 63
+	at PlayerTest.<init>(PlayerTest.java:28)
+]]></error>
+  </testcase>
+  <testcase name="buyHouse" classname="PlayerTest" time="0.001">
+    <error type="org.mockito.exceptions.base.MockitoException"><![CDATA[org.mockito.exceptions.base.MockitoException: 
+
+Mockito cannot mock this class: class java.util.Scanner.
+Can not mock final classes with the following settings :
+ - explicit serialization (e.g. withSettings().serializable())
+ - extra interfaces (e.g. withSettings().extraInterfaces(...))
+
+You are seeing this disclaimer because Mockito is configured to create inlined mocks.
+You can learn about inline mocks and their limitations under item #39 of the Mockito class javadoc.
+
+Underlying exception : org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalStateException: 
+
+Byte Buddy could not instrument all classes within the mock's type hierarchy
+
+This problem should never occur for javac-compiled classes. This problem has been observed for classes that are:
+ - Compiled by older versions of scalac
+ - Classes that are part of the Android distribution
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 63
+	at PlayerTest.<init>(PlayerTest.java:28)
+]]></error>
+  </testcase>
+  <testcase name="payRent" classname="PlayerTest" time="0.001">
+    <error type="org.mockito.exceptions.base.MockitoException"><![CDATA[org.mockito.exceptions.base.MockitoException: 
+
+Mockito cannot mock this class: class java.util.Scanner.
+Can not mock final classes with the following settings :
+ - explicit serialization (e.g. withSettings().serializable())
+ - extra interfaces (e.g. withSettings().extraInterfaces(...))
+
+You are seeing this disclaimer because Mockito is configured to create inlined mocks.
+You can learn about inline mocks and their limitations under item #39 of the Mockito class javadoc.
+
+Underlying exception : org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalStateException: 
+
+Byte Buddy could not instrument all classes within the mock's type hierarchy
+
+This problem should never occur for javac-compiled classes. This problem has been observed for classes that are:
+ - Compiled by older versions of scalac
+ - Classes that are part of the Android distribution
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 63
+	at PlayerTest.<init>(PlayerTest.java:28)
+]]></error>
+  </testcase>
+  <testcase name="rollDice" classname="PlayerTest" time="0.001">
+    <error type="org.mockito.exceptions.base.MockitoException"><![CDATA[org.mockito.exceptions.base.MockitoException: 
+
+Mockito cannot mock this class: class java.util.Scanner.
+Can not mock final classes with the following settings :
+ - explicit serialization (e.g. withSettings().serializable())
+ - extra interfaces (e.g. withSettings().extraInterfaces(...))
+
+You are seeing this disclaimer because Mockito is configured to create inlined mocks.
+You can learn about inline mocks and their limitations under item #39 of the Mockito class javadoc.
+
+Underlying exception : org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalStateException: 
+
+Byte Buddy could not instrument all classes within the mock's type hierarchy
+
+This problem should never occur for javac-compiled classes. This problem has been observed for classes that are:
+ - Compiled by older versions of scalac
+ - Classes that are part of the Android distribution
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 63
+	at PlayerTest.<init>(PlayerTest.java:28)
+]]></error>
+  </testcase>
+  <testcase name="resolveBrokeCantPay" classname="PlayerTest" time="0.001">
+    <error type="org.mockito.exceptions.base.MockitoException"><![CDATA[org.mockito.exceptions.base.MockitoException: 
+
+Mockito cannot mock this class: class java.util.Scanner.
+Can not mock final classes with the following settings :
+ - explicit serialization (e.g. withSettings().serializable())
+ - extra interfaces (e.g. withSettings().extraInterfaces(...))
+
+You are seeing this disclaimer because Mockito is configured to create inlined mocks.
+You can learn about inline mocks and their limitations under item #39 of the Mockito class javadoc.
+
+Underlying exception : org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalStateException: 
+
+Byte Buddy could not instrument all classes within the mock's type hierarchy
+
+This problem should never occur for javac-compiled classes. This problem has been observed for classes that are:
+ - Compiled by older versions of scalac
+ - Classes that are part of the Android distribution
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 63
+	at PlayerTest.<init>(PlayerTest.java:28)
+]]></error>
+  </testcase>
+  <testcase name="move" classname="PlayerTest" time="0.001">
+    <error type="org.mockito.exceptions.base.MockitoException"><![CDATA[org.mockito.exceptions.base.MockitoException: 
+
+Mockito cannot mock this class: class java.util.Scanner.
+Can not mock final classes with the following settings :
+ - explicit serialization (e.g. withSettings().serializable())
+ - extra interfaces (e.g. withSettings().extraInterfaces(...))
+
+You are seeing this disclaimer because Mockito is configured to create inlined mocks.
+You can learn about inline mocks and their limitations under item #39 of the Mockito class javadoc.
+
+Underlying exception : org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalStateException: 
+
+Byte Buddy could not instrument all classes within the mock's type hierarchy
+
+This problem should never occur for javac-compiled classes. This problem has been observed for classes that are:
+ - Compiled by older versions of scalac
+ - Classes that are part of the Android distribution
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 63
+	at PlayerTest.<init>(PlayerTest.java:28)
+]]></error>
+  </testcase>
+  <testcase name="unMortgageProperty" classname="PlayerTest" time="0.001">
+    <error type="org.mockito.exceptions.base.MockitoException"><![CDATA[org.mockito.exceptions.base.MockitoException: 
+
+Mockito cannot mock this class: class java.util.Scanner.
+Can not mock final classes with the following settings :
+ - explicit serialization (e.g. withSettings().serializable())
+ - extra interfaces (e.g. withSettings().extraInterfaces(...))
+
+You are seeing this disclaimer because Mockito is configured to create inlined mocks.
+You can learn about inline mocks and their limitations under item #39 of the Mockito class javadoc.
+
+Underlying exception : org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalStateException: 
+
+Byte Buddy could not instrument all classes within the mock's type hierarchy
+
+This problem should never occur for javac-compiled classes. This problem has been observed for classes that are:
+ - Compiled by older versions of scalac
+ - Classes that are part of the Android distribution
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 63
+	at PlayerTest.<init>(PlayerTest.java:28)
+]]></error>
+  </testcase>
+  <testcase name="meetsBuildCondition" classname="PlayerTest" time="0.001">
+    <error type="org.mockito.exceptions.base.MockitoException"><![CDATA[org.mockito.exceptions.base.MockitoException: 
+
+Mockito cannot mock this class: class java.util.Scanner.
+Can not mock final classes with the following settings :
+ - explicit serialization (e.g. withSettings().serializable())
+ - extra interfaces (e.g. withSettings().extraInterfaces(...))
+
+You are seeing this disclaimer because Mockito is configured to create inlined mocks.
+You can learn about inline mocks and their limitations under item #39 of the Mockito class javadoc.
+
+Underlying exception : org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class java.util.Scanner, interface java.util.Iterator, interface java.io.Closeable, interface java.lang.AutoCloseable]
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalStateException: 
+
+Byte Buddy could not instrument all classes within the mock's type hierarchy
+
+This problem should never occur for javac-compiled classes. This problem has been observed for classes that are:
+ - Compiled by older versions of scalac
+ - Classes that are part of the Android distribution
+	at PlayerTest.<init>(PlayerTest.java:28)
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 63
+	at PlayerTest.<init>(PlayerTest.java:28)
+]]></error>
+  </testcase>
 </testsuite>
