@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="PlayerTest" time="0.053" tests="14" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="PropertySpaceTest" time="0.005" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="19"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -58,18 +58,5 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="63.0"/>
   </properties>
-  <testcase name="buyProperty" classname="PlayerTest" time="0.013"/>
-  <testcase name="insufficientFunds" classname="PlayerTest" time="0.001"/>
-  <testcase name="hasMonopoly" classname="PlayerTest" time="0.008"/>
-  <testcase name="sellHouse" classname="PlayerTest" time="0.002"/>
-  <testcase name="countUtilities" classname="PlayerTest" time="0.002"/>
-  <testcase name="mortgageProperty" classname="PlayerTest" time="0.001"/>
-  <testcase name="countRails" classname="PlayerTest" time="0.001"/>
-  <testcase name="buyHouse" classname="PlayerTest" time="0.001"/>
-  <testcase name="payRent" classname="PlayerTest" time="0.005"/>
-  <testcase name="rollDice" classname="PlayerTest" time="0.002"/>
-  <testcase name="move" classname="PlayerTest" time="0.001"/>
-  <testcase name="unMortgageProperty" classname="PlayerTest" time="0.002"/>
-  <testcase name="resolveBroke" classname="PlayerTest" time="0"/>
-  <testcase name="meetsBuildCondition" classname="PlayerTest" time="0.001"/>
+  <testcase name="calculateRent" classname="PropertySpaceTest" time="0.003"/>
 </testsuite>

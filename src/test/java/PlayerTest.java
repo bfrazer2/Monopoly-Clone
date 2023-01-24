@@ -5,7 +5,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
+import static org.mockito.Mockito.mock;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest extends Main {
@@ -208,8 +210,25 @@ class PlayerTest extends Main {
         assertEquals(1, validHousePurchases.size());
     }
 
-//    @Test
-//    void payRent() {
-//
-//    }
+    @Test
+    void payRent() {
+        boolean res = player2.payRent(1000);
+        assertEquals(500, player2.getPlayerMoney());
+        assertTrue(res);
+
+        res = player2.payRent(1000);
+        assertFalse(res);
+    }
+
+    @Test
+    void resolveBroke() {
+
+        //Returns false if player cannot pay
+        player2.setPlayerMoney(0);
+        boolean res = player2.resolveBroke(1);
+        assertFalse(res);
+
+        //Returns true if player can pay
+
+    }
 }

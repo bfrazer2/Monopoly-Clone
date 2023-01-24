@@ -53,10 +53,10 @@ public class Main {
 
         //Set Game-flow Conditions
         Player activePlayer;
-        Boolean gameOver = false;
-        Boolean selectingPlayerNum = true;
-        Boolean takingTurn;
-        Boolean doubles = false;
+        boolean gameOver = false;
+        boolean selectingPlayerNum = true;
+        boolean takingTurn;
+        boolean doubles = false;
         int doublesCounter = 0;
         int turnCounter = 0;
         int playerNum = 0;

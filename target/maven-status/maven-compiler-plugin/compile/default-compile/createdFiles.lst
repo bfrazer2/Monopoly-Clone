@@ -5,4 +5,5 @@ main/java/BoardSpace.class
 PropertySpace.class
 House.class
 Rail.class
+OptionHandler.class
 Utility.class
