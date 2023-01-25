@@ -11,7 +11,7 @@ public class OptionHandler {
 
     public int handleOptions(Scanner scanner) {
 
-        Boolean notResolved = true;
+        boolean notResolved = true;
         int optionInt = 0;
         while(notResolved) {
             try {
@@ -25,6 +25,7 @@ public class OptionHandler {
                     throw new IllegalArgumentException("Invalid input, number must be between 1 and " + options.size());
                 }
                 System.out.println("You selected: " + options.get(optionInt-1));
+                scanner.nextLine();
                 notResolved = false;
 
             } catch (InputMismatchException e) {
@@ -34,5 +35,25 @@ public class OptionHandler {
             }
         }
         return optionInt;
+    }
+
+    public void handleConfirmation(Scanner scanner) {
+        boolean notConfirmed = true;
+        while (notConfirmed) {
+            try {
+                //Get Input
+                System.out.println("Enter c to continue!");
+
+                String response = scanner.nextLine();
+                if (response.equalsIgnoreCase("c")) {
+                    System.out.println("\n**********************************************");
+                    notConfirmed = false;
+                } else {
+                    throw new IllegalArgumentException("Invalid input, enter c to continue!");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

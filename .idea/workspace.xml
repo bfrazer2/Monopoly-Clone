@@ -6,14 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="4aaf33c7-9a39-4ce2-9990-b25ce85d54ae" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/2023-01-24T17-56-52_359.dumpstream" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/BoardTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/BoardTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/PlayerTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/PlayerTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/PropertySpaceTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/PropertySpaceTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-BoardTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-BoardTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-PlayerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-PlayerTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-PropertySpaceTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-PropertySpaceTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/OptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/OptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Board.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/OptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/OptionHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Player.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +82,13 @@
     </option>
   </component>
   <component name="RunManager" selected="JUnit.All in Monopoly">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Monopoly" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="All in Monopoly" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Monopoly" />
       <option name="PACKAGE_NAME" value="" />
@@ -95,16 +102,6 @@
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="PlayerTest" />
       <option name="METHOD_NAME" value="insufficientFunds" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PlayerTest.resolveBroke" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Monopoly" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="PlayerTest" />
-      <option name="METHOD_NAME" value="resolveBroke" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -133,10 +130,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.All in Monopoly" />
+        <item itemvalue="JUnit.PlayerTest.insufficientFunds" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.PlayerTest.resolveBrokeCantPay" />
         <item itemvalue="JUnit.PlayerTest.resolveBrokeCanPay" />
-        <item itemvalue="JUnit.PlayerTest.resolveBroke" />
-        <item itemvalue="JUnit.PlayerTest.insufficientFunds" />
       </list>
     </recent_temporary>
   </component>
@@ -152,7 +149,7 @@
       <workItem from="1674055957573" duration="49620000" />
       <workItem from="1674489165862" duration="6481000" />
       <workItem from="1674497283306" duration="29320000" />
-      <workItem from="1674579302990" duration="23586000" />
+      <workItem from="1674579302990" duration="26989000" />
     </task>
     <servers />
   </component>

@@ -15,7 +15,7 @@ public class Board extends Main{
             if (mySpace.getType() == "House" || mySpace.getType() == "Rail" || mySpace.getType() == "Utility") {
                 PropertySpace prop = (PropertySpace) mySpace;
                 if (prop.getOwner() != "") {
-                    System.out.print("  Owner: " + prop.getOwner());
+                    System.out.print("  Owner: " + prop.getOwner() + "\n");
                 }
             }
         }

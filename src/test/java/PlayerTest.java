@@ -114,7 +114,7 @@ class PlayerTest extends Main {
         player2.setPlayerMoney(0);
 
         player2.buyProperty(testBoard);
-        assertEquals("Insufficient funds to buy this property!", outContent.toString().trim());
+        assertEquals("player2 now has $0.\nInsufficient funds to buy this property!", outContent.toString().trim());
     }
 
     @Test

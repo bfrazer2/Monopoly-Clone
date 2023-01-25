@@ -98,6 +98,8 @@ public class Main {
             activePlayer = players.get(turnCounter-1);
             String name = activePlayer.getName();
             System.out.println("\n" + name + "'s turn!");
+            OptionHandler contQuery = new OptionHandler("", options);
+            contQuery.handleConfirmation(scanner);
 
             //If in jail, pay $50 or attempt to roll doubles
             if (activePlayer.isInJail() && activePlayer.getPlayerMoney() >= 50) {
@@ -118,6 +120,7 @@ public class Main {
 
             //Check for doubles, manipulate doubles bool & counter as necessary, leave jail if rolled doubles & in jail
             if (roll1 == roll2) {
+                System.out.println(activePlayer.getName() + " rolled doubles!");
                 doubles = true;
                 doublesCounter++;
                 if (activePlayer.isInJail()) {
@@ -130,6 +133,8 @@ public class Main {
 
             int totalRoll = roll1+roll2;
             System.out.println("\n" + name + " rolled a " + totalRoll + "!");
+
+            contQuery.handleConfirmation(scanner);
 
             //Go to Jail if 3rd Consecutive Doubles
             if (doublesCounter==3) {
@@ -181,6 +186,8 @@ public class Main {
                         } else {
                             System.out.println("You've chosen not to purchase this property.");
                         }
+
+                    contQuery.handleConfirmation(scanner);;
                 }
 
                 //If the property they've landed on is owned by another player, they have to pay rent!
@@ -191,6 +198,8 @@ public class Main {
                     int rent = prop.calculateRent(landedSpace,totalRoll);
                     //Subtracts funds from rent-paying player if they can afford it, returns false if they cannot afford it.
                     boolean paid = activePlayer.payRent(rent);
+
+                    contQuery.handleConfirmation(scanner);
 
                     if (!paid) {
                         //If they failed to afford rent, the player will need to mortgage properties and/or sell houses to cover it. resolveBroke will handle that.
@@ -207,12 +216,15 @@ public class Main {
 
                             //The player paying now needs to pay their rent. We don't assign this to a boolean because the logical result is true & we won't be using it.
                             activePlayer.payRent(rent);
+
+                            contQuery.handleConfirmation(scanner);
                         } else {
                             System.out.println(name + "has been eliminated!");
                             //If the active player was eliminated, we check for game over condition.
                             if (players.size() == 2) {
                                 gameOver = true;
                                 System.out.println("\n" + landedSpaceOwner.getName() + " won! Congratulations!!");
+                                contQuery.handleConfirmation(scanner);
                                 continue;
                             }
                             //If the game isn't over, we run assetsRetrieved, which handles the owed player receiving all the losing player's assets.
@@ -229,6 +241,7 @@ public class Main {
                                     //If the owed player is eliminated, both player's assets are set to neutral. removePlayer will handle that
                                     activePlayer.removePlayer();
                                     landedSpaceOwner.removePlayer();
+                                    contQuery.handleConfirmation(scanner);
 
                                     //We now check for a game over condition.
                                     if (players.size() == 1) {
@@ -242,13 +255,16 @@ public class Main {
                             int newBalance = landedSpaceOwner.getPlayerMoney() + assetsRetrieved;
                             landedSpaceOwner.setPlayerMoney(newBalance);
                             players.remove(turnCounter-1);
+                            contQuery.handleConfirmation(scanner);
+                            continue;
                         }
                     }
                 }
             } else {
                 System.out.println("This is an " + type + ". Functionality will be added here in future commits.");
             }
-            
+
+            contQuery.handleConfirmation(scanner);
             takingTurn = true;
             while(takingTurn) {
                 options.add("1. View Balance");
@@ -258,7 +274,7 @@ public class Main {
                 options.add("5. Mortgage Property");
                 options.add("6. UnMortgage Property");
                 options.add("7. Pass Turn");
-                OptionHandler whatToDoQuery = new OptionHandler("How many players will play this game?", options);
+                OptionHandler whatToDoQuery = new OptionHandler("\nWhat would you like to do?", options);
                 int whatToDo = whatToDoQuery.handleOptions(scanner);
                 options.clear();
 
@@ -282,7 +298,7 @@ public class Main {
                         activePlayer.mortgageProperty(propChoice);
                     }
                 } else if (whatToDo == 6) {
-                    int propChoice = activePlayer.chooseProperty("Mortgage Property", scanner);
+                    int propChoice = activePlayer.chooseProperty("Unmortgage Property", scanner);
                     if (propChoice != -1) {
                         activePlayer.unMortgageProperty(propChoice);
                     }

@@ -49,6 +49,7 @@ public class Player {
 
     public void setPlayerMoney(int playerMoney) {
         this.playerMoney = playerMoney;
+        System.out.println(this.getName() + " now has $" + this.playerMoney + ".");
     }
 
     public void setUtilsOwned(int utilsOwned) {
@@ -92,9 +93,8 @@ public class Player {
             PropertySpace prop = (PropertySpace) (propToBuy);
             if (prop.getOwner()=="") {
                 if (this.playerMoney - prop.getPrice() >= 0) {
-                    System.out.println(this.name + " has " + this.playerMoney + " dollars before property purchase.");
                     this.playerMoney -= prop.getPrice();
-                    System.out.println(this.name + " has " + this.playerMoney + " dollars after property purchase.");
+                    System.out.println(this.name + " has " + this.playerMoney + " dollars remaining.");
                     prop.setOwner(this.name);
                     this.ownedProps.add(prop);
                     System.out.println("" + prop.getName() + " is now owned by " + prop.getOwner() + ".");
@@ -285,8 +285,10 @@ public class Player {
             }
             if (prop.getType() == "House") {
                 House house = (House) prop;
-                int houseValue = house.getHouseCost() / 2;
-                System.out.println("This property also has " + house.getNumHouses() + " houses, which can be sold for " + houseValue);
+                if (house.getNumHouses()>0) {
+                    int houseValue = house.getHouseCost() / 2;
+                    System.out.println("This property also has " + house.getNumHouses() + " houses, which can be sold for " + houseValue);
+                }
             }
         }
         while (stillBroke) {
@@ -412,6 +414,7 @@ public class Player {
                 House foreclosedHouse = (House) foreclosedProp;
                 foreclosedHouse.setNumHouses(0);
             }
+            System.out.println(this.getName() + " has been eliminated!");
         }
     }
 
