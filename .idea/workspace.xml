@@ -5,42 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4aaf33c7-9a39-4ce2-9990-b25ce85d54ae" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_assertj_assertj_core_3_17_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/BoardSpaceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/HouseTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/RailTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/UtilityTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/surefire-reports/BoardSpaceTest.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/surefire-reports/HouseTest.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-BoardSpaceTest.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-HouseTest.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/BoardSpaceTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/HouseTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/RailTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/UtilityTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Monopoly.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Monopoly.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BoardSpace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BoardSpace.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/House.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/House.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/OptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/OptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PlayerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/PropertySpaceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PropertySpaceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Monopoly-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/OptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/OptionHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/java/BoardSpace.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/java/BoardSpace.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/PlayerTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/PlayerTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/PropertySpaceTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/PropertySpaceTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-BoardTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-BoardTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-PlayerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-PlayerTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-PropertySpaceTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-PropertySpaceTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/PlayerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/PlayerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/PropertySpaceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/PropertySpaceTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +144,7 @@
       <workItem from="1674055957573" duration="49620000" />
       <workItem from="1674489165862" duration="6481000" />
       <workItem from="1674497283306" duration="29320000" />
-      <workItem from="1674579302990" duration="38485000" />
+      <workItem from="1674579302990" duration="38845000" />
     </task>
     <servers />
   </component>
