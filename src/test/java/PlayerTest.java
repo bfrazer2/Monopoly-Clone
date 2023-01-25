@@ -224,9 +224,9 @@ class PlayerTest extends Main {
     }
 
     @Test
-    void resolveBrokeCantPay() {
+    void resolveBroke() {
 
-        //Returns false if player cannot pay
+        //Returns True if Player can pay
         player2.setPlayerMoney(0);
         boolean res = player2.resolveBroke(1, scanner);
         assertFalse(res);
@@ -256,36 +256,162 @@ class PlayerTest extends Main {
         PropertySpace prop2 = (PropertySpace) mortgagedProp2;
         House house = (House)prop2;
         assertEquals(0,house.getNumHouses());
+
     }
 
     @Test
-    void chooseProperty() {
+    void resolveBrokeCantPay() {
+        player2.setPlayerMoney(0);
+        boolean res = player2.resolveBroke(1, scanner);
+        assertFalse(res);
+
+        player2.setPlayerMoney(420);
 
         player2.setCurrentSpace(1);
         player2.buyProperty(testBoard);
         player2.setCurrentSpace(3);
         player2.buyProperty(testBoard);
+        player2.buyHouse(0);
+        player2.buyHouse(1);
+        player2.setCurrentSpace(5);
+        player2.buyProperty(testBoard);
+        player2.setCurrentSpace(6);
+        player2.buyProperty(testBoard);
+    }
 
+    @Test
+    void chooseProperty() {
+
+        //Player 2 Buys 2 Properties
+        player2.setCurrentSpace(1);
+        player2.buyProperty(testBoard);
+        player2.setCurrentSpace(3);
+        player2.buyProperty(testBoard);
+
+        //Cast property to Prop & House for grabbing attributes
         main.java.BoardSpace boardSpace = player2.getOwnedProps().get(0);
         PropertySpace prop = (PropertySpace) boardSpace;
         House house = (House) prop;
 
-        when(mockScanner.nextInt()).thenReturn(1,1,1,1);
+        when(mockScanner.nextInt()).thenReturn(1,1,3,1,1);
 
+        //Choice method grabs appropriate property & mortgage method mortgages it
         int choice = player2.chooseProperty("Mortgage Property", mockScanner);
         player2.mortgageProperty(choice);
         assertTrue(prop.isMortgaged());
 
+        //Works for unmortgage
         choice = player2.chooseProperty("Unmortgage Property", mockScanner);
         player2.unMortgageProperty(choice);
         assertFalse(prop.isMortgaged());
 
+        //Returns -1 if player chooses the back option
+        choice = player2.chooseProperty("Mortgage Property", mockScanner);
+        assertEquals(-1, choice);
+
+        //Works for buying a house
         choice = player2.chooseProperty("Buy House", mockScanner);
         player2.buyHouse(choice);
         assertEquals(1, house.getNumHouses());
 
+        //Works for selling a house
         player2.chooseProperty("Sell House", mockScanner);
         player2.sellHouse(choice);
         assertEquals(0,house.getNumHouses());
+    }
+
+    @Test
+    void resolveBankruptcy() {
+
+        player1 = new Player("player1", player1Props, 1500, 0, 0, 1, false);
+
+        player2.setCurrentSpace(1);
+        player2.buyProperty(testBoard);
+        player2.setCurrentSpace(3);
+        player2.buyProperty(testBoard);
+        player2.buyHouse(0);
+        player2.buyHouse(1);
+        player2.setCurrentSpace(5);
+        player2.buyProperty(testBoard);
+        player2.setCurrentSpace(6);
+        player2.buyProperty(testBoard);
+
+        player2.mortgageProperty(0);
+        player2.mortgageProperty(1);
+        player2.mortgageProperty(3);
+
+        player2.setPlayerMoney(16);
+
+        player1.setPlayerMoney(10);
+
+        when(mockScanner.nextInt()).thenReturn(1,2);
+        int res = player2.resolveBankruptcy(player1, mockScanner);
+        assertEquals(25, res);
+
+        assertEquals("Reading Railroad", player1.getOwnedProps().get(2).getName());
+
+        main.java.BoardSpace mortgagedProp1 = player1.getOwnedProps().get(0);
+        PropertySpace prop1 = (PropertySpace) mortgagedProp1;
+        House house1 = (House) prop1;
+        assertEquals(0, house1.getNumHouses());
+        assertFalse(prop1.isMortgaged());
+
+
+        main.java.BoardSpace mortgagedProp2 = player1.getOwnedProps().get(1);
+        PropertySpace prop2 = (PropertySpace) mortgagedProp2;
+        House house2 = (House)prop2;
+        assertEquals(0, house2.getNumHouses());
+        assertTrue(prop2.isMortgaged());
+
+        assertEquals(0, player2.getOwnedProps().size());
+
+        player2.setPlayerMoney(100);
+        player2.setCurrentSpace(8);
+        player2.buyProperty(testBoard);
+        player2.mortgageProperty(0);
+        player2.setPlayerMoney(0);
+        player1.setPlayerMoney(0);
+
+        res = player2.resolveBankruptcy(player1,mockScanner);
+        assertEquals(-5, res);
+    }
+
+    @Test
+    void removePlayer() {
+        player2.setCurrentSpace(1);
+        player2.buyProperty(testBoard);
+        player2.setCurrentSpace(3);
+        player2.buyProperty(testBoard);
+        player2.buyHouse(0);
+        player2.buyHouse(1);
+        player2.setCurrentSpace(5);
+        player2.buyProperty(testBoard);
+
+        player2.mortgageProperty(0);
+        player2.mortgageProperty(1);
+
+        player2.removePlayer();
+
+        main.java.BoardSpace mortgagedProp1 = testBoard.getSpaceDetails(1);
+        PropertySpace prop1 = (PropertySpace) mortgagedProp1;
+        House house1 = (House) prop1;
+        assertEquals(0, house1.getNumHouses());
+        assertFalse(prop1.isMortgaged());
+
+
+        main.java.BoardSpace mortgagedProp2 = testBoard.getSpaceDetails(3);
+        PropertySpace prop2 = (PropertySpace) mortgagedProp2;
+        House house2 = (House)prop2;
+        assertEquals(0, house2.getNumHouses());
+        assertFalse(prop2.isMortgaged());
+
+        assertEquals(0, player2.getOwnedProps().size());
+    }
+
+    @Test
+    void isInJail() {
+
+        player2.setInJail(true);
+        assertTrue(player2.isInJail());
     }
 }

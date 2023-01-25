@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4aaf33c7-9a39-4ce2-9990-b25ce85d54ae" name="Changes" comment="" />
+    <list default="true" id="4aaf33c7-9a39-4ce2-9990-b25ce85d54ae" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PlayerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/PlayerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/PlayerTest.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,7 +79,14 @@
       <command value="mvn clean test" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.All in Monopoly">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Monopoly" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="All in Monopoly" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Monopoly" />
       <option name="PACKAGE_NAME" value="" />
@@ -80,41 +95,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PropertySpaceTest.calculateRent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PlayerTest.chooseProperty" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Monopoly" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="PropertySpaceTest" />
-      <option name="METHOD_NAME" value="calculateRent" />
+      <option name="MAIN_CLASS_NAME" value="PlayerTest" />
+      <option name="METHOD_NAME" value="chooseProperty" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PropertySpaceTest.getOwnerObject" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PlayerTest.resolveBankruptcy" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Monopoly" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="PropertySpaceTest" />
-      <option name="METHOD_NAME" value="getOwnerObject" />
+      <option name="MAIN_CLASS_NAME" value="PlayerTest" />
+      <option name="METHOD_NAME" value="resolveBankruptcy" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RailTest.toStringTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PlayerTest.resolveBroke" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Monopoly" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="RailTest" />
-      <option name="METHOD_NAME" value="toStringTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UtilityTest.toStringTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Monopoly" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="UtilityTest" />
-      <option name="METHOD_NAME" value="toStringTest" />
+      <option name="MAIN_CLASS_NAME" value="PlayerTest" />
+      <option name="METHOD_NAME" value="resolveBroke" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -122,11 +127,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.All in Monopoly" />
-        <item itemvalue="JUnit.RailTest.toStringTest" />
-        <item itemvalue="JUnit.UtilityTest.toStringTest" />
-        <item itemvalue="JUnit.PropertySpaceTest.calculateRent" />
-        <item itemvalue="JUnit.PropertySpaceTest.getOwnerObject" />
+        <item itemvalue="JUnit.PlayerTest.resolveBroke" />
+        <item itemvalue="JUnit.PlayerTest.resolveBankruptcy" />
+        <item itemvalue="JUnit.PlayerTest.chooseProperty" />
       </list>
     </recent_temporary>
   </component>
@@ -143,7 +148,8 @@
       <workItem from="1674489165862" duration="6481000" />
       <workItem from="1674497283306" duration="29320000" />
       <workItem from="1674579302990" duration="38845000" />
-      <workItem from="1674654985833" duration="200000" />
+      <workItem from="1674654985833" duration="6724000" />
+      <workItem from="1674665890819" duration="7102000" />
     </task>
     <servers />
   </component>
@@ -172,6 +178,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Monopoly_Clone$All_in_Monopoly.ic" NAME="All in Monopoly Coverage Results" MODIFIED="1674617178851" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Monopoly_Clone$All_in_Monopoly.ic" NAME="All in Monopoly Coverage Results" MODIFIED="1674669720540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

@@ -43,21 +43,9 @@ public class Player {
         return currentSpace;
     }
 
-    public void setOwnedProps(ArrayList<main.java.BoardSpace> ownedProps) {
-        this.ownedProps = ownedProps;
-    }
-
     public void setPlayerMoney(int playerMoney) {
         this.playerMoney = playerMoney;
         System.out.println(this.getName() + " now has $" + this.playerMoney + ".");
-    }
-
-    public void setUtilsOwned(int utilsOwned) {
-        this.utilsOwned = utilsOwned;
-    }
-
-    public void setRailsOwned(int railsOwned) {
-        this.railsOwned = railsOwned;
     }
 
     public void setCurrentSpace(int currentSpace) {
@@ -120,7 +108,7 @@ public class Player {
     public void mortgageProperty(int playerProp) {
         PropertySpace propToMortgage = (PropertySpace) (this.ownedProps.get(playerProp));
         propToMortgage.setMortgaged();
-        System.out.println(propToMortgage.isMortgaged());
+        System.out.println(propToMortgage.getName() + " is now mortgaged!");
         System.out.println("Player has " + this.playerMoney + " dollars before mortgage.");
         this.playerMoney += ((propToMortgage.getPrice())/2);
         System.out.println("Player has " + this.playerMoney + " dollars after mortgage.");
@@ -342,7 +330,8 @@ public class Player {
             if (space.getType() == "House") {
                 House house = (House) space;
                 if (house.getNumHouses()>0) {
-                    houseAssets += (house.getNumHouses() * (house.getHouseCost()/2));
+                    houseAssets += (house.getNumHouses() * ((house.getHouseCost())/2));
+                    house.setNumHouses(0);
                 }
             }
         }
@@ -357,9 +346,11 @@ public class Player {
 
             //Checks minimum cost of newly acquired properties
             int costToPayRemainingInterest = 0;
-            for (BoardSpace remainingSpace : ownedProps) {
+            for (BoardSpace remainingSpace : this.ownedProps) {
                 PropertySpace remainingProp = (PropertySpace) remainingSpace;
-                costToPayRemainingInterest += (remainingProp.getPrice() * .05);
+                if (remainingProp.isMortgaged() && !owedPlayer.ownedProps.contains(remainingProp)) {
+                    costToPayRemainingInterest += (remainingProp.getPrice() * .05);
+                }
             }
             remainingBalance = owedPlayer.playerMoney + this.playerMoney + houseAssets - totalInterestCost - totalUnMortgageCost;
 
@@ -401,8 +392,9 @@ public class Player {
                 }
             }
         }
+        this.getOwnedProps().clear();
         //The program returns the net effect on the owed players $
-        return houseAssets+this.playerMoney-totalUnMortgageCost-totalInterestCost;
+        return (houseAssets+this.playerMoney)-(totalUnMortgageCost+totalInterestCost);
     }
 
     public void removePlayer() {
@@ -415,7 +407,7 @@ public class Player {
                 foreclosedHouse.setNumHouses(0);
             }
             System.out.println(this.getName() + " has been eliminated!");
-        }
+        } this.ownedProps.clear();
     }
 
     public boolean isInJail() {
@@ -515,3 +507,4 @@ public class Player {
         }
     }
 }
+

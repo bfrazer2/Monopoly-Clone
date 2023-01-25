@@ -148,6 +148,7 @@ public class Main {
             //If not in jail, move
             if (!activePlayer.isInJail()) {
                 activePlayer.move(totalRoll);
+
             }
             main.java.BoardSpace landedSpace = board.getSpaceDetails(activePlayer.getCurrentSpace());
             System.out.println("\n" + name + " landed on " + landedSpace.getName() + ".\n");
@@ -264,7 +265,6 @@ public class Main {
                 System.out.println("This is an " + type + ". Functionality will be added here in future commits.");
             }
 
-            contQuery.handleConfirmation(scanner);
             takingTurn = true;
             while(takingTurn) {
                 options.add("1. View Balance");
