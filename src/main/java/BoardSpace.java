@@ -6,8 +6,8 @@ public class BoardSpace {
     private String type;
 
     public BoardSpace() {
-
     }
+
     public BoardSpace(String name, String type) {
         this.name = name;
         this.type = type;

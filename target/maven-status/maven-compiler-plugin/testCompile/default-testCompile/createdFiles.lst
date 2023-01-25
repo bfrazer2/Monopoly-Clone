@@ -1,3 +1,5 @@
 BoardTest.class
 PropertySpaceTest.class
+BoardSpaceTest.class
+HouseTest.class
 PlayerTest.class

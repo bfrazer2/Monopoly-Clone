@@ -470,7 +470,7 @@ public class Player {
                 PropertySpace prop = (PropertySpace) space;
                 if (prop.getType() == "House") {
                     House house = (House) prop;
-                    if (checkedColors.contains(house.getColor())) {
+                    if (!checkedColors.contains(house.getColor())) {
                         List<House> validHouseLocations = this.meetsBuildCondition(house.getColor());
                         for (House validBuild : validHouseLocations) {
                             optionsCounter++;

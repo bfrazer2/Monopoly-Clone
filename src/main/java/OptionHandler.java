@@ -27,8 +27,8 @@ public class OptionHandler {
                 System.out.println("You selected: " + options.get(optionInt-1));
                 scanner.nextLine();
                 notResolved = false;
-
             } catch (InputMismatchException e) {
+                scanner.nextLine();
                 System.out.println("Invalid input, not a number");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

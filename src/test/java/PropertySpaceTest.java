@@ -92,5 +92,13 @@ class PropertySpaceTest extends Main {
         player1.buyProperty(testBoard);
         result = propSpace6.calculateRent(space,3);
         assertEquals(30,result);
+
+        //Can get property owner
+        Player res = propSpace6.getOwnerObject();
+        assertEquals(player1,res);
+
+        //Can create with empty constructor
+        main.java.BoardSpace space = new main.java.BoardSpace();
+        assertNotNull(space);
     }
 }

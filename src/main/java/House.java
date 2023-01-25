@@ -51,7 +51,4 @@ public class House extends PropertySpace {
             int rentToPay = rent[this.numHouses];
             return rentToPay;
     }
-
-
-
 }

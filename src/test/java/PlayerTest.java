@@ -231,7 +231,7 @@ class PlayerTest extends Main {
         boolean res = player2.resolveBroke(1, scanner);
         assertFalse(res);
 
-        player2.setPlayerMoney(120+200+100);
+        player2.setPlayerMoney(420);
 
         player2.setCurrentSpace(1);
         player2.buyProperty(testBoard);
@@ -255,6 +255,37 @@ class PlayerTest extends Main {
         main.java.BoardSpace mortgagedProp2 = player2.getOwnedProps().get(0);
         PropertySpace prop2 = (PropertySpace) mortgagedProp2;
         House house = (House)prop2;
+        assertEquals(0,house.getNumHouses());
+    }
+
+    @Test
+    void chooseProperty() {
+
+        player2.setCurrentSpace(1);
+        player2.buyProperty(testBoard);
+        player2.setCurrentSpace(3);
+        player2.buyProperty(testBoard);
+
+        main.java.BoardSpace boardSpace = player2.getOwnedProps().get(0);
+        PropertySpace prop = (PropertySpace) boardSpace;
+        House house = (House) prop;
+
+        when(mockScanner.nextInt()).thenReturn(1,1,1,1);
+
+        int choice = player2.chooseProperty("Mortgage Property", mockScanner);
+        player2.mortgageProperty(choice);
+        assertTrue(prop.isMortgaged());
+
+        choice = player2.chooseProperty("Unmortgage Property", mockScanner);
+        player2.unMortgageProperty(choice);
+        assertFalse(prop.isMortgaged());
+
+        choice = player2.chooseProperty("Buy House", mockScanner);
+        player2.buyHouse(choice);
+        assertEquals(1, house.getNumHouses());
+
+        player2.chooseProperty("Sell House", mockScanner);
+        player2.sellHouse(choice);
         assertEquals(0,house.getNumHouses());
     }
 }
